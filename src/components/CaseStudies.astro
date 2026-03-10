@@ -81,8 +81,9 @@ const cases = [
       {cases.map((c) => (
         <div class="bg-primary/5 border border-primary/10 rounded-2xl p-8 hover:bg-primary/[0.07] transition-colors group">
           <div class="flex items-center justify-between mb-6">
-            <div class="h-10 flex items-center">
-              <img src={c.logo} alt={c.name} class="h-8 max-w-[120px] object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div class="flex items-center gap-3">
+              <img src={c.logo} alt={c.name} class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
+              <span class="font-display font-medium text-primary/80 text-sm">{c.name}</span>
             </div>
             <span class="inline-flex items-center rounded-full bg-accent-warm/10 border border-accent-warm/20 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-warm">
               {c.tag}
