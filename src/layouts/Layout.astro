@@ -48,10 +48,9 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Fonts (self-hosted for performance) -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/SpaceGrotesk-Latin.woff2" as="font" type="font/woff2" crossorigin />
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2C64SY9XCK" is:inline></script>
@@ -95,5 +94,51 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     <style is:global>
       @import '../styles/global.css';
     </style>
+
+    <!-- Global scroll reveal & counter animations -->
+    <script is:inline>
+      // Scroll reveal with stagger
+      (function() {
+        var ro = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry, i) {
+            if (entry.isIntersecting) {
+              setTimeout(function() { entry.target.classList.add('visible'); }, i * 100);
+              ro.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+
+        // Counter animation
+        function animateCounter(el) {
+          var text = el.getAttribute('data-target') || el.textContent || '';
+          var match = text.match(/([+-]?)(\d+(?:[.,]\d+)?)/);
+          if (!match) return;
+          var prefix = text.replace(/[\d.,]+.*/, '');
+          var suffix = text.replace(/.*[\d.,]+/, '');
+          var target = parseFloat(match[2].replace(',', '.'));
+          var duration = 2000;
+          var start = performance.now();
+          function step(now) {
+            var progress = Math.min((now - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(target * eased);
+            el.textContent = prefix + current + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = text;
+          }
+          requestAnimationFrame(step);
+        }
+        var co = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              co.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.counter-value').forEach(function(el) { co.observe(el); });
+      })();
+    </script>
   </body>
 </html>

@@ -1,0 +1,286 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import StickyCTA from '../../components/StickyCTA.astro';
+
+const methodology = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-6-6m6 6v-4.8m0 4.8h-4.8"/><path d="M3 16.2V21m0 0h4.8M3 21l6-6"/><path d="M21 7.8V3m0 0h-4.8M21 3l-6 6"/><path d="M3 7.8V3m0 0h4.8M3 3l6 6"/></svg>`,
+    title: "Audit Technique",
+    description: "Analyse complète de votre site : crawl, indexation, vitesse, Core Web Vitals, architecture, erreurs techniques. Nous identifions chaque frein à votre visibilité."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>`,
+    title: "Optimisation On-Page",
+    description: "Stratégie sémantique, optimisation des balises, maillage interne, cocons thématiques, enrichissement de contenu. Chaque page devient un aimant à trafic qualifié."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>`,
+    title: "Netlinking",
+    description: "Acquisition de backlinks d'autorité via des campagnes ciblées. Relations presse digitale, guest posting, partenariats stratégiques pour booster votre Domain Authority."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg>`,
+    title: "Suivi & Reporting",
+    description: "Tableaux de bord en temps réel, rapports mensuels détaillés, suivi des positions, du trafic et des conversions. Transparence totale sur l'avancement."
+  }
+];
+
+const results = [
+  { metric: "+40%", label: "trafic organique", client: "NRJ Group", detail: "4 sites radio optimisés en 8 mois" },
+  { metric: "+58%", label: "leads B2B qualifiés", client: "Edenred", detail: "12 mots-clés en top 3 Google" },
+  { metric: "+156%", label: "CA en ligne", client: "IZAC", detail: "#2 sur 'costume homme français'" },
+];
+
+const process_steps = [
+  { step: "01", title: "Audit", description: "Analyse technique et sémantique complète de votre site. Identification des opportunités et des freins." },
+  { step: "02", title: "Stratégie", description: "Plan d'action sur-mesure avec priorisation des actions par impact et effort. Objectifs clairs et mesurables." },
+  { step: "03", title: "Exécution", description: "Déploiement méthodique des optimisations techniques, du contenu et du netlinking. Itérations rapides." },
+  { step: "04", title: "Reporting", description: "Suivi des KPIs, rapports mensuels transparents, ajustements continus basés sur la data." },
+];
+
+const faqs = [
+  {
+    question: "En combien de temps vais-je voir des résultats SEO ?",
+    answer: "Les quick wins techniques sont visibles en quelques semaines. Les vrais résultats SEO (positions, trafic, leads) apparaissent entre 3 et 6 mois. Pour des résultats solides et durables, comptez 6 à 12 mois. C'est un investissement à long terme — c'est ce qui en fait la force."
+  },
+  {
+    question: "Pouvez-vous garantir la première position sur Google ?",
+    answer: "Non, et méfiez-vous de quiconque le prétend. Personne ne contrôle l'algorithme de Google. En revanche, notre méthodologie éprouvée et nos 10 ans d'expérience produisent des résultats constants : +40% de trafic qualifié en moyenne chez nos clients."
+  },
+  {
+    question: "Quel budget prévoir pour une stratégie SEO ?",
+    answer: "Chaque projet est unique : un site vitrine de 10 pages et un e-commerce de 100 000 produits, ce n'est pas le même travail. Nous établissons un devis sur-mesure après un audit gratuit de votre situation. Pas de grille tarifaire générique."
+  },
+  {
+    question: "Quelle est la différence entre SEO et SEA ?",
+    answer: "Le SEO (référencement naturel) vise les résultats organiques de Google — c'est un investissement à long terme qui génère du trafic gratuit. Le SEA (Google Ads) génère du trafic payant immédiat. L'idéal est de combiner les deux pour maximiser le ROI."
+  },
+  {
+    question: "Travaillez-vous avec des PME ou uniquement des grands comptes ?",
+    answer: "Nous travaillons avec les deux. Notre portfolio va de startups early-stage à des groupes CAC 40 comme Edenred ou NRJ. L'important n'est pas la taille, c'est l'ambition et l'engagement dans la démarche SEO."
+  },
+  {
+    question: "Comment mesurez-vous le succès d'une campagne SEO ?",
+    answer: "Nous suivons des KPIs concrets : positions sur les mots-clés stratégiques, trafic organique qualifié, taux de conversion, et in fine le chiffre d'affaires généré. Pas de métriques vaniteuses — uniquement ce qui impacte votre business."
+  }
+];
+---
+
+<Layout 
+  title="Référencement Naturel (SEO) | Expert SEO Paris | Save Your Web"
+  description="Expert SEO à Paris. +40% de trafic pour NRJ, Edenred, IZAC. Audit technique, optimisation on-page, netlinking. Votre audit SEO gratuit →"
+>
+  <Navbar />
+  <main>
+    <!-- Hero -->
+    <section class="relative min-h-[70vh] flex items-center pt-32 pb-20 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-black to-accent-warm/10"></div>
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="absolute top-[20%] right-[15%] w-[400px] h-[400px] bg-accent-warm/8 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(25_100%_50%/0.12)_0%,_transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="max-w-4xl">
+          <div class="reveal inline-flex items-center gap-2 rounded-full border border-primary/20 bg-black/50 backdrop-blur-md px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-warm"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            Référencement Naturel
+          </div>
+
+          <h1 class="reveal font-display text-5xl md:text-6xl lg:text-[72px] leading-[1.05] font-medium tracking-tight text-primary mb-8">
+            Référencement Naturel<br />
+            <span class="text-primary/60">(SEO)</span>
+          </h1>
+          
+          <p class="reveal text-xl text-primary/70 mb-12 max-w-2xl leading-relaxed">
+            Dominez les résultats de recherche Google avec une stratégie SEO data-driven. Plus de trafic qualifié, plus de leads, plus de chiffre d'affaires — durablement.
+          </p>
+
+          <div class="reveal flex flex-wrap items-center gap-6">
+            <a href="#contact-seo" class="cta-glow group flex items-center gap-4 rounded-full pl-6 pr-4 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
+              Demander un Audit SEO Gratuit
+              <span class="w-8 h-8 rounded-full bg-primary-foreground flex items-center justify-center text-primary group-hover:scale-95 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-black via-accent-warm/5 to-black"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="text-center mb-16">
+          <div class="reveal inline-flex items-center rounded-full border border-primary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+            Notre Méthodologie
+          </div>
+          <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+            Une approche complète<br />
+            <span class="text-primary/60">et éprouvée</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {methodology.map((item) => (
+            <div class="card-hover bg-primary/5 backdrop-blur-xl border border-primary/10 rounded-2xl p-8 md:p-10">
+              <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent-warm/10 border border-accent-warm/20 text-accent-warm mb-6" set:html={item.icon} />
+              <h3 class="font-display text-xl md:text-2xl font-medium mb-4">{item.title}</h3>
+              <p class="text-primary/70 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-warm/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px w-6 bg-accent-warm"></div>
+          <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Résultats Concrets</span>
+        </div>
+        <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-16 max-w-3xl">
+          Des chiffres qui parlent.<br />
+          <span class="text-primary/50">Pas des promesses.</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          {results.map((r) => (
+            <div class="reveal border-t border-primary/10 pt-8 relative group">
+              <div class="absolute top-0 left-0 w-0 h-px bg-accent-warm transition-all duration-700 group-hover:w-full"></div>
+              <h3 class="font-display text-6xl md:text-7xl font-medium tracking-tighter text-primary mb-2 counter-value" data-target={r.metric}>
+                {r.metric}
+              </h3>
+              <p class="text-lg font-medium text-accent-warm mb-2">{r.label}</p>
+              <p class="text-sm text-primary/50 font-medium mb-1">{r.client}</p>
+              <p class="text-sm text-primary/40">{r.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-24 lg:py-32 bg-black relative">
+      <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="text-center mb-16">
+          <div class="reveal inline-flex items-center rounded-full border border-primary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+            Notre Process
+          </div>
+          <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+            4 étapes vers le<br />
+            <span class="text-primary/60">sommet de Google</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {process_steps.map((s) => (
+            <div class="reveal relative">
+              <div class="text-7xl font-display font-bold text-accent-warm/10 mb-4">{s.step}</div>
+              <h3 class="font-display text-xl font-medium mb-3">{s.title}</h3>
+              <p class="text-primary/60 leading-relaxed text-sm">{s.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 lg:py-32 bg-black relative">
+      <div class="max-w-4xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px w-6 bg-accent-warm"></div>
+          <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">FAQ SEO</span>
+        </div>
+        <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-16 max-w-3xl">
+          Questions fréquentes
+        </h2>
+
+        <div class="space-y-4" id="faq-list-seo">
+          {faqs.map((faq, i) => (
+            <div class="faq-item border border-primary/10 rounded-2xl overflow-hidden" data-faq-index={i}>
+              <button class="faq-trigger w-full flex items-center justify-between gap-4 p-6 md:p-8 text-left cursor-pointer hover:bg-primary/5 transition-colors" aria-expanded="false">
+                <span class="font-display text-lg md:text-xl font-medium pr-4">{faq.question}</span>
+                <svg class="faq-icon flex-shrink-0 w-6 h-6 text-accent-warm transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                <div class="px-6 md:px-8 pb-6 md:pb-8">
+                  <p class="text-primary/70 leading-relaxed text-lg">{faq.answer}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact-seo" class="py-24 lg:py-32 bg-black">
+      <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="relative rounded-[2rem] overflow-hidden border border-primary/10">
+          <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent-warm/15 via-black to-accent-warm/5"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsl(25_100%_50%/0.1)_0%,_transparent_50%)]"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative z-10 p-8 md:p-16 lg:p-20 text-center">
+            <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+              Prêt à dominer Google ?
+            </h2>
+            <p class="reveal text-xl text-primary/70 mb-10 max-w-2xl mx-auto">
+              Demandez votre audit SEO gratuit — nous analysons votre site et vous présentons les opportunités de croissance.
+            </p>
+            <a href="/#contact" class="reveal cta-glow inline-flex items-center gap-4 rounded-full pl-8 pr-4 py-4 bg-primary text-primary-foreground font-medium text-lg hover:bg-primary/90 transition-colors">
+              Demander un Audit SEO Gratuit
+              <span class="w-10 h-10 rounded-full bg-primary-foreground text-primary flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyCTA />
+</Layout>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item') as HTMLElement;
+      const content = item.querySelector('.faq-content') as HTMLElement;
+      const icon = item.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-item').forEach((other) => {
+        if (other !== item) {
+          const oc = other.querySelector('.faq-content') as HTMLElement;
+          const oi = other.querySelector('.faq-icon') as HTMLElement;
+          const ob = other.querySelector('.faq-trigger') as HTMLElement;
+          oc.style.maxHeight = '0';
+          oi.style.transform = 'rotate(0deg)';
+          ob.setAttribute('aria-expanded', 'false');
+        }
+      });
+      if (isOpen) {
+        content.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(45deg)';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Scroll reveal and counter handled globally by Layout
+</script>

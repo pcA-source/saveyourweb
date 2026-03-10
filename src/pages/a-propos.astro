@@ -1,0 +1,301 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import StickyCTA from '../components/StickyCTA.astro';
+
+const timeline = [
+  {
+    years: "2016 — 2018",
+    role: "Consultant SEO Junior",
+    company: "Primelis",
+    description: "Top agence SEO en France. Portfolio de 300K€/an. Premiers pas dans le SEO professionnel : audits techniques, stratégies de contenu, suivi de positions."
+  },
+  {
+    years: "2018 — 2020",
+    role: "Responsable SEO",
+    company: "NRJ Group",
+    description: "4 sites radio (NRJ, Chérie FM, Nostalgie, Rire & Chansons). +40% de trafic hors-marque. #1 sur \"Blagues\". Optimisation Core Web Vitals à grande échelle."
+  },
+  {
+    years: "2020 — 2022",
+    role: "Responsable SEO",
+    company: "L-Expert-Comptable.com",
+    description: "+30% de signatures clients via le SEO. Pilotage de 60+ rédacteurs freelance. 1,2M visites SEO/mois. Management d'équipe éditoriale."
+  },
+  {
+    years: "2022 — 2024",
+    role: "Responsable SEO",
+    company: "JD2M",
+    description: "jedeclaremonmeuble.com — +45% de trafic organique. Stratégie from scratch : lead gen, cocons thématiques, contenu expert. Positions #1-2 sur les requêtes niche."
+  },
+  {
+    years: "2024 — Présent",
+    role: "Consultant SEO & SEA Freelance",
+    company: "Save Your Web",
+    description: "50+ clients accompagnés. E-commerce, SaaS, B2B. SEO + Google Ads. France entière. L'aboutissement de 9 ans d'expérience en une offre complète."
+  },
+];
+
+const stats = [
+  { value: "9+", label: "ans d'expérience", suffix: "" },
+  { value: "50+", label: "clients accompagnés", suffix: "" },
+  { value: "+40%", label: "trafic moyen généré", suffix: "" },
+  { value: "0", label: "client déçu", suffix: "" },
+];
+
+const skills = [
+  {
+    title: "SEO Technique",
+    items: ["Core Web Vitals", "Crawl & analyse de logs", "Architecture de site", "Migrations SEO", "JS Rendering", "Données structurées"]
+  },
+  {
+    title: "SEO Éditorial",
+    items: ["Stratégie de contenu", "Recherche de mots-clés", "Optimisation on-page", "Content pruning", "Briefs rédacteurs", "Topic clusters"]
+  },
+  {
+    title: "SEO Off-site",
+    items: ["Netlinking", "Digital PR", "Analyse de backlinks", "Guest posting", "Désaveu de liens", "Partenariats stratégiques"]
+  },
+  {
+    title: "SEA & Analytics",
+    items: ["Google Ads (Search, Shopping)", "Performance Max", "Meta Ads", "Tracking & GTM", "Looker Studio", "Google Tag Manager"]
+  },
+  {
+    title: "Outils",
+    items: ["Screaming Frog", "Semrush / Ahrefs", "Google Search Console", "OnCrawl", "Looker Studio", "Google Analytics 4"]
+  },
+];
+
+const values = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+    title: "Résultats > Activité",
+    description: "Je ne mesure pas mon travail en heures passées ou en livrables envoyés. Je le mesure en trafic, en leads et en chiffre d'affaires généré."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    title: "Transparence totale",
+    description: "Accès en temps réel aux dashboards. Rapports sans jargon. Si quelque chose ne marche pas, je le dis — et je propose un plan B."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    title: "Partenaire, pas prestataire",
+    description: "Je m'implique dans votre business comme si c'était le mien. Un interlocuteur unique et senior, pas une armée de juniors qui apprennent sur votre compte."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    title: "Toujours en apprentissage",
+    description: "Google change ses règles en permanence. Je teste, j'expérimente, je me forme. Chaque semaine. Parce que ce qui marchait hier ne marche pas forcément demain."
+  },
+];
+---
+
+<Layout 
+  title="À Propos — Pierre-Charles Relange | Consultant SEO & SEA | Save Your Web"
+  description="9+ ans d'expérience SEO. NRJ, Edenred, L-Expert-Comptable, IZAC. 50+ clients accompagnés. Consultant SEO & Google Ads freelance à Paris."
+>
+  <Navbar />
+  <main>
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-black to-accent-warm/8"></div>
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="absolute top-[30%] right-[10%] w-[400px] h-[400px] bg-accent-warm/6 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+          <!-- Photo -->
+          <div class="reveal lg:col-span-2 flex justify-center lg:justify-start">
+            <div class="relative">
+              <div class="absolute -inset-4 bg-gradient-to-br from-accent-warm/20 to-transparent rounded-3xl blur-2xl"></div>
+              <img 
+                src="/signature/photo-pc.png" 
+                alt="Pierre-Charles Relange — Consultant SEO & SEA" 
+                class="relative w-64 md:w-80 rounded-2xl border border-primary/10 shadow-2xl"
+              />
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="lg:col-span-3">
+            <div class="reveal inline-flex items-center gap-2 rounded-full border border-primary/20 bg-black/50 backdrop-blur-md px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-warm"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              À Propos
+            </div>
+
+            <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-medium tracking-tight text-primary mb-6">
+              Pierre-Charles Relange
+            </h1>
+
+            <p class="reveal text-2xl md:text-3xl font-display font-medium text-primary/60 mb-8">
+              Passionné de SEO depuis 9 ans.
+            </p>
+
+            <div class="reveal space-y-5 text-lg text-primary/70 leading-relaxed">
+              <p>
+                J'adore le SEO. Pas le SEO théorique. <strong class="text-primary font-medium">Le SEO qui fait bouger les courbes.</strong>
+              </p>
+              <p>
+                Celui qui transforme un site invisible en machine à leads. Celui où on regarde la Search Console le lundi matin et on sourit.
+              </p>
+              <p>
+                Après 9 ans en agence et en interne chez <strong class="text-accent-warm font-medium">NRJ Group</strong>, <strong class="text-accent-warm font-medium">L-Expert-Comptable.com</strong> et <strong class="text-accent-warm font-medium">JD2M</strong>, j'ai lancé Save Your Web pour combiner SEO et SEA dans une offre complète, sans bullshit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 bg-black relative border-y border-primary/5">
+      <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+          {stats.map((s) => (
+            <div class="reveal text-center">
+              <div class="font-display text-5xl md:text-6xl font-medium tracking-tighter text-primary mb-2 counter-value" data-target={s.value}>
+                {s.value}
+              </div>
+              <p class="text-sm text-primary/50 uppercase tracking-wider font-medium">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+      <div class="absolute top-1/2 left-0 w-[400px] h-[800px] bg-accent-warm/3 rounded-full blur-[150px] pointer-events-none -translate-x-1/2"></div>
+      <div class="relative z-10 max-w-5xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px w-6 bg-accent-warm"></div>
+          <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Parcours</span>
+        </div>
+        <h2 class="reveal font-display text-4xl md:text-5xl font-medium tracking-tight mb-16 max-w-3xl">
+          9 ans à faire monter<br />
+          <span class="text-primary/50">des sites sur Google.</span>
+        </h2>
+
+        <div class="relative">
+          <!-- Vertical line -->
+          <div class="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-accent-warm/40 via-accent-warm/20 to-transparent"></div>
+
+          <div class="space-y-12">
+            {timeline.map((item, i) => (
+              <div class="reveal relative flex gap-6 md:gap-8">
+                <!-- Dot -->
+                <div class="flex-shrink-0 relative z-10">
+                  <div class={`w-10 h-10 md:w-12 md:h-12 rounded-full border-2 flex items-center justify-center ${i === timeline.length - 1 ? 'border-accent-warm bg-accent-warm/20' : 'border-primary/20 bg-black'}`}>
+                    {i === timeline.length - 1 ? (
+                      <div class="w-3 h-3 rounded-full bg-accent-warm animate-pulse"></div>
+                    ) : (
+                      <div class="w-2 h-2 rounded-full bg-primary/40"></div>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="pb-2">
+                  <span class="text-xs font-medium uppercase tracking-widest text-accent-warm">{item.years}</span>
+                  <h3 class="font-display text-xl md:text-2xl font-medium mt-1 mb-1">{item.role}</h3>
+                  <p class="text-lg font-medium text-primary/60 mb-3">{item.company}</p>
+                  <p class="text-primary/50 leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-black via-accent-warm/3 to-black"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="text-center mb-16">
+          <div class="reveal inline-flex items-center rounded-full border border-primary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+            Compétences
+          </div>
+          <h2 class="reveal font-display text-4xl md:text-5xl font-medium tracking-tight mb-6">
+            Ce que je maîtrise.<br />
+            <span class="text-primary/60">Concrètement.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {skills.map((skill) => (
+            <div class="card-hover bg-primary/5 border border-primary/10 rounded-2xl p-6">
+              <h3 class="font-display text-lg font-medium mb-4 text-accent-warm">{skill.title}</h3>
+              <ul class="space-y-2.5">
+                {skill.items.map((item) => (
+                  <li class="flex items-start gap-2.5 text-sm text-primary/60">
+                    <span class="text-accent-warm mt-1 flex-shrink-0">›</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-24 lg:py-32 bg-black relative">
+      <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px w-6 bg-accent-warm"></div>
+          <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Mes Valeurs</span>
+        </div>
+        <h2 class="reveal font-display text-4xl md:text-5xl font-medium tracking-tight mb-16 max-w-3xl">
+          Ce en quoi je crois.
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {values.map((v) => (
+            <div class="card-hover bg-primary/5 border border-primary/10 rounded-2xl p-8 md:p-10">
+              <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent-warm/10 border border-accent-warm/20 text-accent-warm mb-6" set:html={v.icon} />
+              <h3 class="font-display text-xl font-medium mb-3">{v.title}</h3>
+              <p class="text-primary/60 leading-relaxed">{v.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 lg:py-32 bg-black">
+      <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="relative rounded-[2rem] overflow-hidden border border-primary/10">
+          <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent-warm/15 via-black to-accent-warm/5"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsl(25_100%_50%/0.1)_0%,_transparent_50%)]"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative z-10 p-8 md:p-16 lg:p-20 text-center">
+            <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+              Travaillons ensemble.
+            </h2>
+            <p class="reveal text-xl text-primary/70 mb-10 max-w-2xl mx-auto">
+              Un café virtuel, un audit de votre site, une idée de stratégie — je suis à un message.
+            </p>
+            <a href="/#contact" class="reveal cta-glow inline-flex items-center gap-4 rounded-full pl-8 pr-4 py-4 bg-primary text-primary-foreground font-medium text-lg hover:bg-primary/90 transition-colors">
+              Discutons de votre projet
+              <span class="w-10 h-10 rounded-full bg-primary-foreground text-primary flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyCTA />
+</Layout>
+
+<!-- Scroll reveal and counter handled globally by Layout -->

@@ -17,7 +17,7 @@ const metrics = [
           <div class="h-px w-6 bg-accent-warm"></div>
           <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Nos Résultats</span>
         </div>
-        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight max-w-2xl">
+        <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight max-w-2xl">
           Nous ne vendons pas du vent.<br />
           <span class="text-primary/50">Nous vendons du ROI.</span>
         </h2>
@@ -26,9 +26,9 @@ const metrics = [
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
       {metrics.map((metric) => (
-        <div class="border-t border-primary/10 pt-8 relative group">
+        <div class="reveal border-t border-primary/10 pt-8 relative group">
           <div class="absolute top-0 left-0 w-0 h-px bg-accent-warm transition-all duration-700 group-hover:w-full"></div>
-          <h3 class="font-display text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-primary mb-6">
+          <h3 class="font-display text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-primary mb-6 counter-value" data-target={metric.value}>
             {metric.value}
           </h3>
           <p class="text-lg text-primary/60 leading-relaxed max-w-xs">

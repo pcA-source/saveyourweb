@@ -1,0 +1,286 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import StickyCTA from '../../components/StickyCTA.astro';
+
+const services = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>`,
+    title: "Google Search Ads",
+    description: "Campagnes sur le réseau de recherche pour capter l'intention d'achat au moment précis où vos prospects cherchent vos produits ou services."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>`,
+    title: "Google Shopping",
+    description: "Campagnes Shopping optimisées pour les e-commerçants. Flux produit impeccable, enchères granulaires, segmentation par marge et performance."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M14 15H9v-5"/><path d="M16 3h5v5"/><path d="M21 3 9 15"/></svg>`,
+    title: "Performance Max",
+    description: "Campagnes PMax multi-canaux (Search, Display, YouTube, Discover, Maps, Gmail) pilotées par l'IA de Google. Maximisation des conversions sur tous les inventaires."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+    title: "Display & YouTube",
+    description: "Campagnes de notoriété et retargeting sur le réseau Display et YouTube. Audiences personnalisées, créas engageantes, mesure de l'incrémental."
+  },
+];
+
+const results = [
+  { metric: "35x", label: "ROAS moyen", client: "Montale Parfums", detail: "Campagnes Shopping & Search internationales" },
+  { metric: "-71%", label: "coût par conversion", client: "Client e-commerce", detail: "Restructuration complète du compte" },
+  { metric: "+187%", label: "appels & itinéraires", client: "Replayce", detail: "Via Google Business Profile & Local Ads" },
+];
+
+const process_steps = [
+  { step: "01", title: "Audit du compte", description: "Analyse complète de votre compte Google Ads existant (ou étude de marché si nouveau). Identification des dépenses inutiles et opportunités manquées." },
+  { step: "02", title: "Stratégie & structure", description: "Architecture de compte optimisée, sélection des mots-clés, définition des audiences, objectifs de ROAS/CPA. Plan média clair." },
+  { step: "03", title: "Lancement & optimisation", description: "Déploiement des campagnes, A/B testing des annonces, optimisation des enchères, ajustements quotidiens basés sur la performance." },
+  { step: "04", title: "Scaling & reporting", description: "Montée en puissance progressive, rapports hebdomadaires transparents, recommandations d'extension vers de nouveaux canaux." },
+];
+
+const faqs = [
+  {
+    question: "Quel budget minimum faut-il pour Google Ads ?",
+    answer: "Il n'y a pas de minimum technique, mais pour obtenir des données statistiquement significatives et optimiser correctement, nous recommandons un minimum de 1 500€/mois de budget média. En dessous, les résultats seront lents et les optimisations limitées."
+  },
+  {
+    question: "Combien de temps pour voir des résultats en SEA ?",
+    answer: "Contrairement au SEO, les résultats en SEA sont quasi immédiats : dès l'activation des campagnes, vos annonces apparaissent. L'optimisation fine (enchères, audiences, créas) prend 2 à 4 semaines pour atteindre le rythme de croisière."
+  },
+  {
+    question: "Quelle est votre commission sur le budget média ?",
+    answer: "Nous facturons des honoraires fixes mensuels, pas un pourcentage du budget média. Pourquoi ? Parce qu'un modèle au pourcentage incite l'agence à augmenter vos dépenses. Nos honoraires sont alignés sur la complexité du compte, pas sur votre budget."
+  },
+  {
+    question: "Gérez-vous aussi Meta Ads (Facebook/Instagram) ?",
+    answer: "Oui, nous gérons des campagnes Meta Ads en complément de Google Ads. La synergie entre les deux plateformes est puissante : Google capte l'intention de recherche, Meta génère de la demande et du retargeting."
+  },
+  {
+    question: "Que se passe-t-il si je veux arrêter ?",
+    answer: "Votre compte Google Ads vous appartient à 100%. Nous travaillons toujours sur votre propre compte, jamais sur un compte agence. Si vous arrêtez notre collaboration, vous gardez tout : le compte, l'historique, les données, les audiences."
+  },
+  {
+    question: "Comment mesurez-vous le ROAS ?",
+    answer: "Nous mettons en place un tracking de conversion précis (Google Tag Manager, Enhanced Conversions, Server-Side Tracking si nécessaire) pour mesurer chaque vente ou lead généré. Le ROAS est calculé sur les conversions réelles, pas sur des métriques vaniteuses."
+  }
+];
+---
+
+<Layout 
+  title="Google Ads & SEA | Expert Google Ads Paris | Save Your Web"
+  description="Expert Google Ads à Paris. ROAS 35x pour Montale, -71% coût par conversion. Search, Shopping, PMax, Display. Lancez vos campagnes →"
+>
+  <Navbar />
+  <main>
+    <!-- Hero -->
+    <section class="relative min-h-[70vh] flex items-center pt-32 pb-20 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-black to-accent-warm/10"></div>
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+        <div class="absolute top-[20%] right-[15%] w-[400px] h-[400px] bg-accent-warm/8 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(25_100%_50%/0.12)_0%,_transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="max-w-4xl">
+          <div class="reveal inline-flex items-center gap-2 rounded-full border border-primary/20 bg-black/50 backdrop-blur-md px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-warm"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            Google Ads & SEA
+          </div>
+
+          <h1 class="reveal font-display text-5xl md:text-6xl lg:text-[72px] leading-[1.05] font-medium tracking-tight text-primary mb-8">
+            Google Ads<br />
+            <span class="text-primary/60">& SEA</span>
+          </h1>
+          
+          <p class="reveal text-xl text-primary/70 mb-12 max-w-2xl leading-relaxed">
+            Des campagnes publicitaires pensées pour le ROI. Chaque euro investi est optimisé pour maximiser vos conversions et réduire votre coût d'acquisition.
+          </p>
+
+          <div class="reveal flex flex-wrap items-center gap-6">
+            <a href="#contact-sea" class="cta-glow group flex items-center gap-4 rounded-full pl-6 pr-4 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
+              Lancer mes Campagnes
+              <span class="w-8 h-8 rounded-full bg-primary-foreground flex items-center justify-center text-primary group-hover:scale-95 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-black via-accent-warm/5 to-black"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="text-center mb-16">
+          <div class="reveal inline-flex items-center rounded-full border border-primary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+            Nos Services SEA
+          </div>
+          <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+            Tous les leviers Google Ads<br />
+            <span class="text-primary/60">à votre service</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {services.map((item) => (
+            <div class="card-hover bg-primary/5 backdrop-blur-xl border border-primary/10 rounded-2xl p-8 md:p-10">
+              <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent-warm/10 border border-accent-warm/20 text-accent-warm mb-6" set:html={item.icon} />
+              <h3 class="font-display text-xl md:text-2xl font-medium mb-4">{item.title}</h3>
+              <p class="text-primary/70 leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-warm/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px w-6 bg-accent-warm"></div>
+          <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Résultats Concrets</span>
+        </div>
+        <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-16 max-w-3xl">
+          Du ROI. Pas du CPM.<br />
+          <span class="text-primary/50">Des conversions. Pas des clics.</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          {results.map((r) => (
+            <div class="reveal border-t border-primary/10 pt-8 relative group">
+              <div class="absolute top-0 left-0 w-0 h-px bg-accent-warm transition-all duration-700 group-hover:w-full"></div>
+              <h3 class="font-display text-6xl md:text-7xl font-medium tracking-tighter text-primary mb-2 counter-value" data-target={r.metric}>
+                {r.metric}
+              </h3>
+              <p class="text-lg font-medium text-accent-warm mb-2">{r.label}</p>
+              <p class="text-sm text-primary/50 font-medium mb-1">{r.client}</p>
+              <p class="text-sm text-primary/40">{r.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-24 lg:py-32 bg-black relative">
+      <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="text-center mb-16">
+          <div class="reveal inline-flex items-center rounded-full border border-primary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+            Notre Process
+          </div>
+          <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+            4 étapes pour maximiser<br />
+            <span class="text-primary/60">votre retour sur investissement</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {process_steps.map((s) => (
+            <div class="reveal relative">
+              <div class="text-7xl font-display font-bold text-accent-warm/10 mb-4">{s.step}</div>
+              <h3 class="font-display text-xl font-medium mb-3">{s.title}</h3>
+              <p class="text-primary/60 leading-relaxed text-sm">{s.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 lg:py-32 bg-black relative">
+      <div class="max-w-4xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px w-6 bg-accent-warm"></div>
+          <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">FAQ Google Ads</span>
+        </div>
+        <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-16 max-w-3xl">
+          Questions fréquentes
+        </h2>
+
+        <div class="space-y-4" id="faq-list-sea">
+          {faqs.map((faq, i) => (
+            <div class="faq-item border border-primary/10 rounded-2xl overflow-hidden" data-faq-index={i}>
+              <button class="faq-trigger w-full flex items-center justify-between gap-4 p-6 md:p-8 text-left cursor-pointer hover:bg-primary/5 transition-colors" aria-expanded="false">
+                <span class="font-display text-lg md:text-xl font-medium pr-4">{faq.question}</span>
+                <svg class="faq-icon flex-shrink-0 w-6 h-6 text-accent-warm transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+                <div class="px-6 md:px-8 pb-6 md:pb-8">
+                  <p class="text-primary/70 leading-relaxed text-lg">{faq.answer}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact-sea" class="py-24 lg:py-32 bg-black">
+      <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+        <div class="relative rounded-[2rem] overflow-hidden border border-primary/10">
+          <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent-warm/15 via-black to-accent-warm/5"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsl(25_100%_50%/0.1)_0%,_transparent_50%)]"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative z-10 p-8 md:p-16 lg:p-20 text-center">
+            <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+              Prêt à scaler vos conversions ?
+            </h2>
+            <p class="reveal text-xl text-primary/70 mb-10 max-w-2xl mx-auto">
+              Demandez un audit gratuit de votre compte Google Ads — nous identifions les opportunités et le budget gaspillé.
+            </p>
+            <a href="/#contact" class="reveal cta-glow inline-flex items-center gap-4 rounded-full pl-8 pr-4 py-4 bg-primary text-primary-foreground font-medium text-lg hover:bg-primary/90 transition-colors">
+              Lancer mes Campagnes
+              <span class="w-10 h-10 rounded-full bg-primary-foreground text-primary flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyCTA />
+</Layout>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item') as HTMLElement;
+      const content = item.querySelector('.faq-content') as HTMLElement;
+      const icon = item.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-item').forEach((other) => {
+        if (other !== item) {
+          const oc = other.querySelector('.faq-content') as HTMLElement;
+          const oi = other.querySelector('.faq-icon') as HTMLElement;
+          const ob = other.querySelector('.faq-trigger') as HTMLElement;
+          oc.style.maxHeight = '0';
+          oi.style.transform = 'rotate(0deg)';
+          ob.setAttribute('aria-expanded', 'false');
+        }
+      });
+      if (isOpen) {
+        content.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(45deg)';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Scroll reveal and counter handled globally by Layout
+</script>
