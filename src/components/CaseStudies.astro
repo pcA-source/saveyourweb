@@ -17,8 +17,9 @@ const cases = [
     description: "Marque mode masculine. +94% trafic e-commerce, #2 sur 'costume homme français'.",
   },
   {
-    logo: "/logos/freelance-republik.png",
+    logo: "",
     name: "Freelance Republik",
+    initials: "FR",
     tag: "SaaS",
     metric: "+73%",
     metricLabel: "inscriptions freelances",
@@ -82,7 +83,11 @@ const cases = [
         <div class="bg-primary/5 border border-primary/10 rounded-2xl p-8 hover:bg-primary/[0.07] transition-colors group">
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-3">
-              <img src={c.logo} alt={c.name} class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
+              {c.logo ? (
+                <img src={c.logo} alt={c.name} class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
+              ) : (
+                <div class="w-10 h-10 rounded-lg bg-accent-warm/15 border border-accent-warm/30 flex items-center justify-center font-display font-bold text-accent-warm text-sm">{c.initials || c.name.slice(0,2)}</div>
+              )}
               <span class="font-display font-medium text-primary/80 text-sm">{c.name}</span>
             </div>
             <span class="inline-flex items-center rounded-full bg-accent-warm/10 border border-accent-warm/20 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-warm">
