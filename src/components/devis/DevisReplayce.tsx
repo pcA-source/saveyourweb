@@ -292,10 +292,66 @@ function SubtotalBar({ label, setup, monthly }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
+const WHITE15 = "rgba(255,255,255,0.15)";
+
+const REQUIRED_CLIENT_FIELDS: (keyof ClientInfo)[] = ['company_name', 'siret', 'email', 'address', 'zip_code', 'city'];
+
+interface ClientInfo {
+  company_name: string;
+  siret: string;
+  email: string;
+  address: string;
+  zip_code: string;
+  city: string;
+  contact_name: string;
+  phone: string;
+}
+
+function ClientFormField({ label, value, onChange, required = false, placeholder = '', type = 'text' }: {
+  label: string; value: string; onChange: (v: string) => void; required?: boolean; placeholder?: string; type?: string;
+}) {
+  const [focused, setFocused] = useState(false);
+  return (
+    <div>
+      <label style={{
+        display: 'block',
+        color: WHITE50, fontSize: 10, letterSpacing: '0.1em',
+        textTransform: 'uppercase' as const, fontFamily: 'Inter, sans-serif',
+        marginBottom: 6,
+      }}>
+        {label}{required && <span style={{ color: ACCENT, marginLeft: 3 }}>*</span>}
+      </label>
+      <input
+        type={type}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        placeholder={placeholder}
+        style={{
+          width: '100%', boxSizing: 'border-box' as const,
+          background: WHITE8,
+          border: `1px solid ${focused ? ACCENT : WHITE15}`,
+          borderRadius: 8, color: PRIMARY,
+          fontFamily: 'Inter, sans-serif',
+          padding: '10px 14px', fontSize: 15,
+          outline: 'none',
+          transition: 'border-color 0.2s',
+        }}
+      />
+    </div>
+  );
+}
+
 export default function Devis() {
   const [selT, setSelT] = useState({ sea_tours: true, seo_tours: true, meta_tours: false, tiktok_tours: false });
   const [selL, setSelL] = useState({ prelaunch: true, sea_lr: true, seo_lr: false, meta_lr: false });
   const [validationState, setValidationState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [clientInfo, setClientInfo] = useState<ClientInfo>({
+    company_name: '', siret: '', email: '', address: '', zip_code: '', city: '', contact_name: '', phone: '',
+  });
+  const updateClient = (field: keyof ClientInfo, value: string) => setClientInfo(prev => ({ ...prev, [field]: value }));
+  const clientValid = REQUIRED_CLIENT_FIELDS.every(f => clientInfo[f].trim() !== '');
 
   const handleValidate = async () => {
     setValidationState('sending');
@@ -322,6 +378,7 @@ export default function Devis() {
             monthly: m.monthly,
             details: m.details,
           })),
+          client_info: clientInfo,
           qonto_client_id: '019cbada-2452-7d2f-9c5e-197eb3a70494',
           qonto_header: 'Proposition commerciale — Stratégie digitale locale Tours & La Rochelle',
           total_setup: totalSetup,
@@ -605,6 +662,35 @@ export default function Devis() {
             </ul>
           </div>
 
+          {/* ── FORMULAIRE CLIENT ── */}
+          <div style={{
+            marginTop: 24,
+            background: WHITE5,
+            border: `1px solid ${WHITE10}`,
+            borderRadius: 16,
+            padding: '28px 28px 32px',
+          }}>
+            <SectionLabel label="Vos informations" />
+            <p style={{ color: WHITE60, fontFamily: 'Inter, sans-serif', fontSize: 14, margin: '0 0 24px', fontWeight: 300 }}>
+              Ces informations seront utilisées pour établir le devis officiel.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16 }}>
+              <style>{`@media (min-width: 768px) { .client-form-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
+              <div className="client-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16 }}>
+                <ClientFormField label="Raison sociale" value={clientInfo.company_name} onChange={v => updateClient('company_name', v)} required placeholder="Nom de l'entreprise" />
+                <ClientFormField label="SIRET (14 chiffres)" value={clientInfo.siret} onChange={v => updateClient('siret', v)} required placeholder="123 456 789 00012" />
+                <ClientFormField label="Email de facturation" value={clientInfo.email} onChange={v => updateClient('email', v)} required type="email" placeholder="facturation@entreprise.fr" />
+                <ClientFormField label="Nom du contact" value={clientInfo.contact_name} onChange={v => updateClient('contact_name', v)} placeholder="Prénom Nom (optionnel)" />
+                <div style={{ gridColumn: '1 / -1' }}>
+                  <ClientFormField label="Adresse" value={clientInfo.address} onChange={v => updateClient('address', v)} required placeholder="Numéro et rue" />
+                </div>
+                <ClientFormField label="Code postal" value={clientInfo.zip_code} onChange={v => updateClient('zip_code', v)} required placeholder="37000" />
+                <ClientFormField label="Ville" value={clientInfo.city} onChange={v => updateClient('city', v)} required placeholder="Tours" />
+                <ClientFormField label="Téléphone" value={clientInfo.phone} onChange={v => updateClient('phone', v)} type="tel" placeholder="06 00 00 00 00 (optionnel)" />
+              </div>
+            </div>
+          </div>
+
           {/* ── CTA VALIDATION ── */}
           <div style={{
             marginTop: 24,
@@ -658,13 +744,13 @@ export default function Devis() {
                   </p>
                   <button
                     onClick={handleValidate}
-                    disabled={validationState === 'sending' || selected === 0}
+                    disabled={validationState === 'sending' || selected === 0 || !clientValid}
                     style={{
                       display: "inline-flex", alignItems: "center", gap: 16,
                       borderRadius: 9999, paddingLeft: 28, paddingRight: 12, paddingTop: 12, paddingBottom: 12,
-                      background: selected === 0 ? WHITE20 : ACCENT, color: "#000",
+                      background: (selected === 0 || !clientValid) ? WHITE20 : ACCENT, color: "#000",
                       fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 16,
-                      border: "none", cursor: selected === 0 ? "not-allowed" : "pointer",
+                      border: "none", cursor: (selected === 0 || !clientValid) ? "not-allowed" : "pointer",
                       transition: "opacity 0.2s, transform 0.1s",
                       opacity: validationState === 'sending' ? 0.7 : 1,
                     }}

@@ -108,21 +108,67 @@ export default {
           }
         }
 
+        // Resolve Qonto client_id: from client_info (create/find) or from body.qonto_client_id
+        let resolvedClientId: string | null = body.qonto_client_id || null;
+        const qontoAuth = `${env.QONTO_ORG_SLUG}:${env.QONTO_SECRET_KEY}`;
+        const qontoBase = 'https://thirdparty.qonto.com/v2';
+
+        if (body.client_info && env.QONTO_ORG_SLUG && env.QONTO_SECRET_KEY) {
+          const ci = body.client_info;
+          try {
+            // Search existing clients by SIRET
+            const searchRes = await fetch(`${qontoBase}/clients?per_page=100`, {
+              headers: { 'Authorization': qontoAuth },
+            });
+            const searchData = await searchRes.json() as any;
+            const clients = searchData.clients || [];
+            const existing = clients.find((c: any) => c.tax_identification_number === ci.siret);
+
+            if (existing) {
+              resolvedClientId = existing.id;
+            } else {
+              // Create new client
+              const createRes = await fetch(`${qontoBase}/clients`, {
+                method: 'POST',
+                headers: { 'Authorization': qontoAuth, 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  type: 'company',
+                  name: ci.company_name,
+                  email: ci.email,
+                  tax_identification_number: ci.siret,
+                  address: ci.address,
+                  city: ci.city,
+                  zip_code: ci.zip_code,
+                  country_code: 'FR',
+                  currency: 'EUR',
+                  locale: 'fr',
+                }),
+              });
+              const createData = await createRes.json() as any;
+              if (createData.client?.id) {
+                resolvedClientId = createData.client.id;
+              }
+            }
+          } catch (e) {
+            // Client resolution failed, continue with existing qonto_client_id if any
+          }
+        }
+
         // Create quote on Qonto if we have items and credentials
         let qontoQuote: any = null;
-        if (qontoItems.length > 0 && env.QONTO_ORG_SLUG && env.QONTO_SECRET_KEY && body.qonto_client_id) {
+        if (qontoItems.length > 0 && env.QONTO_ORG_SLUG && env.QONTO_SECRET_KEY && resolvedClientId) {
           const today = new Date().toISOString().split('T')[0];
           const expiry = new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0];
           
           try {
-            const qRes = await fetch('https://thirdparty.qonto.com/v2/quotes', {
+            const qRes = await fetch(`${qontoBase}/quotes`, {
               method: 'POST',
               headers: {
-                'Authorization': `${env.QONTO_ORG_SLUG}:${env.QONTO_SECRET_KEY}`,
+                'Authorization': qontoAuth,
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                client_id: body.qonto_client_id,
+                client_id: resolvedClientId,
                 issue_date: today,
                 expiry_date: expiry,
                 currency: 'EUR',
@@ -143,11 +189,16 @@ export default {
           ? `\n📄 **Devis Qonto créé** : ${qontoQuote.number} (${qontoQuote.status}) — ${qontoQuote.total_amount?.value || '?'}€ TTC`
           : (qontoItems.length > 0 ? '\n⚠️ Devis Qonto non créé (credentials manquants ou erreur)' : '');
 
+        const clientInfoField = body.client_info
+          ? [{ name: '🏢 Client', value: `${body.client_info.company_name} — ${body.client_info.siret} — ${body.client_info.email}${body.client_info.contact_name ? `\nContact : ${body.client_info.contact_name}` : ''}${body.client_info.phone ? ` — ${body.client_info.phone}` : ''}\n${body.client_info.address}, ${body.client_info.zip_code} ${body.client_info.city}`, inline: false }]
+          : [];
+
         const discordPayload = {
           embeds: [{
             title: `✅ Devis validé — ${body.client || 'Client'}`,
             color: 0x22c55e,
             fields: [
+              ...clientInfoField,
               ...(toursList ? [{ name: '📍 Tours', value: toursList, inline: false }] : []),
               ...(lrList ? [{ name: '📍 La Rochelle', value: lrList, inline: false }] : []),
               { name: '💰 Setup total', value: `${body.total_setup || 0} € HT`, inline: true },
