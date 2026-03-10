@@ -1,18 +1,40 @@
 ---
-const sectors = [
-  "Luxe", "E-commerce", "SaaS", "B2B", "Santé", "Finance", "Immobilier", "Juridique"
+const clients = [
+  { name: "NRJ Group", logo: "/logos/nrj.png" },
+  { name: "Edenred", logo: "/logos/edenred.png" },
+  { name: "IZAC", logo: "/logos/izac.png" },
+  { name: "L-Expert-Comptable", logo: "/logos/lexpert-comptable.png" },
+  { name: "Freelance Republik", logo: "/logos/freelance-republik.png" },
+  { name: "JD2M", logo: "/logos/jd2m.png" },
+  { name: "Replayce", logo: "/logos/replayce.png" },
 ];
 ---
 
-<section class="py-10 border-y border-primary/5 bg-black overflow-hidden relative">
+<section class="py-8 md:py-10 border-y border-primary/5 bg-black overflow-hidden relative">
   <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
   <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+
+  <!-- Title -->
+  <div class="text-center mb-6">
+    <span class="text-xs font-medium tracking-widest uppercase text-primary/30">Ils nous ont fait confiance</span>
+  </div>
   
-  <div class="flex items-center gap-16 md:gap-32 w-max animate-marquee">
-    {[...sectors, ...sectors, ...sectors, ...sectors].map((sector) => (
-      <span class="font-display text-xl md:text-2xl font-bold tracking-widest text-primary/20 uppercase whitespace-nowrap">
-        {sector}
-      </span>
+  <!-- Logo marquee -->
+  <div class="flex items-center gap-16 md:gap-24 w-max animate-marquee">
+    {[...clients, ...clients, ...clients, ...clients].map((client) => (
+      <div class="flex items-center gap-3 whitespace-nowrap">
+        <img 
+          src={client.logo} 
+          alt={client.name} 
+          width="40" 
+          height="40" 
+          class="w-10 h-10 object-contain opacity-40 grayscale hover:opacity-80 hover:grayscale-0 transition-all duration-300"
+          loading="lazy"
+        />
+        <span class="font-display text-lg md:text-xl font-bold tracking-widest text-primary/25 uppercase">
+          {client.name}
+        </span>
+      </div>
     ))}
   </div>
 </section>

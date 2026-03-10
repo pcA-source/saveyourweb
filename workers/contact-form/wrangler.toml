@@ -5,3 +5,4 @@ compatibility_date = "2026-03-10"
 [vars]
 NOTIFY_EMAIL = "contact@saveyourweb.fr"
 ALLOWED_ORIGIN = "https://saveyourweb.fr"
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1480926931045060762/muTuIjvhPvPX4YxedoUAzr6TmwpUvVFiMhIpIdLlhn5M1s5MIbqqEYGIKIQV4lpUi-Im"
