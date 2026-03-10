@@ -76,6 +76,11 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     })} />
   </head>
   <body class="min-h-screen bg-black text-primary font-sans antialiased">
+    <script is:inline>
+      if(window.location.hostname.endsWith('.pages.dev')||window.location.hostname==='www.saveyourweb.fr'){
+        window.location.replace('https://saveyourweb.fr'+window.location.pathname+window.location.search);
+      }
+    </script>
     <slot />
     
     <style is:global>
