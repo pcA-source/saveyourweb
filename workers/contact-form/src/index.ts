@@ -8,6 +8,7 @@ interface Env {
   NOTIFY_EMAIL: string;
   ALLOWED_ORIGIN: string;
   DISCORD_WEBHOOK_URL: string;
+  DISCORD_DEVIS_WEBHOOK_URL?: string;
   RESEND_API_KEY?: string;
   SMTP_HOST: string;
   SMTP_PORT: string;
@@ -96,8 +97,10 @@ export default {
           }],
         };
 
-        if (env.DISCORD_WEBHOOK_URL) {
-          await fetch(env.DISCORD_WEBHOOK_URL, {
+        // Send to #devis-saveyourweb channel
+        const devisWebhook = env.DISCORD_DEVIS_WEBHOOK_URL || env.DISCORD_WEBHOOK_URL;
+        if (devisWebhook) {
+          await fetch(devisWebhook, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(discordPayload),
