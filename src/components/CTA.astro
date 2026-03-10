@@ -22,6 +22,12 @@
         </p>
 
         <!-- Contact Form -->
+        <div id="form-success" class="hidden max-w-2xl bg-accent-warm/10 border border-accent-warm/30 rounded-2xl p-8 text-center">
+          <div class="text-4xl mb-4">✅</div>
+          <h3 class="font-display text-2xl font-medium mb-2">Message envoyé !</h3>
+          <p class="text-primary/70">Nous reviendrons vers vous très rapidement.</p>
+        </div>
+        <div id="form-error" class="hidden max-w-2xl bg-red-500/10 border border-red-500/30 rounded-2xl p-6 mb-6 text-red-400"></div>
         <form id="contact-form" class="max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6" method="POST" action="#">
           <div class="flex flex-col gap-2">
             <label for="name" class="text-sm font-medium text-primary/60 uppercase tracking-wider">Nom</label>
@@ -84,4 +90,50 @@
       </div>
     </div>
   </div>
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successEl = document.getElementById('form-success')!;
+  const errorEl = document.getElementById('form-error')!;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.classList.add('hidden');
+    
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="px-4">Envoi en cours...</span>';
+    btn.disabled = true;
+
+    try {
+      const data = {
+        name: (form.querySelector('#name') as HTMLInputElement).value,
+        email: (form.querySelector('#email') as HTMLInputElement).value,
+        website: (form.querySelector('#website') as HTMLInputElement).value,
+        message: (form.querySelector('#message') as HTMLTextAreaElement).value,
+      };
+
+      const res = await fetch('https://saveyourweb-contact.pc-relange.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        form.classList.add('hidden');
+        successEl.classList.remove('hidden');
+      } else {
+        errorEl.textContent = result.error || 'Une erreur est survenue.';
+        errorEl.classList.remove('hidden');
+      }
+    } catch {
+      errorEl.textContent = 'Erreur de connexion. Veuillez réessayer.';
+      errorEl.classList.remove('hidden');
+    } finally {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
+  });
+</script>
 </section>

@@ -1,0 +1,7 @@
+name = "saveyourweb-contact"
+main = "src/index.ts"
+compatibility_date = "2026-03-10"
+
+[vars]
+NOTIFY_EMAIL = "contact@saveyourweb.fr"
+ALLOWED_ORIGIN = "https://saveyourweb.fr"
