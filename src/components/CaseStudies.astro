@@ -3,6 +3,7 @@ const cases = [
   {
     logo: "/logos/lexpert-comptable.png",
     name: "L-Expert-Comptable",
+    slug: "lexpert-comptable",
     tag: "SaaS",
     metric: "+23%",
     metricLabel: "signatures clients via SEO",
@@ -11,6 +12,7 @@ const cases = [
   {
     logo: "/logos/izac.png",
     name: "IZAC",
+    slug: "izac",
     tag: "E-commerce",
     metric: "+156%",
     metricLabel: "CA online/offline",
@@ -19,6 +21,7 @@ const cases = [
   {
     logo: "",
     name: "Freelance Republik",
+    slug: "freelance-republik",
     initials: "FR",
     tag: "SaaS",
     metric: "+73%",
@@ -28,6 +31,7 @@ const cases = [
   {
     logo: "/logos/jd2m.png",
     name: "JD2M",
+    slug: "jd2m",
     tag: "SaaS",
     metric: "78%",
     metricLabel: "leads depuis Google",
@@ -36,6 +40,7 @@ const cases = [
   {
     logo: "/logos/nrj.png",
     name: "NRJ Group",
+    slug: "nrj",
     tag: "Media",
     metric: "+37%",
     metricLabel: "audience qualifiée",
@@ -44,6 +49,7 @@ const cases = [
   {
     logo: "/logos/edenred.png",
     name: "Edenred",
+    slug: "edenred",
     tag: "B2B · CAC 40",
     metric: "+58%",
     metricLabel: "leads B2B qualifiés",
@@ -52,6 +58,7 @@ const cases = [
   {
     logo: "/logos/replayce.png",
     name: "Replayce",
+    slug: "",
     tag: "Local",
     metric: "+2 400",
     metricLabel: "ventes en boutique via Google",
@@ -79,30 +86,41 @@ const cases = [
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {cases.map((c) => (
-        <div class="reveal card-hover bg-primary/5 border border-primary/10 rounded-2xl p-8 group">
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center gap-3">
-              {c.logo ? (
-                <img src={c.logo} alt={c.name} class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
-              ) : (
-                <div class="w-10 h-10 rounded-lg bg-accent-warm/15 border border-accent-warm/30 flex items-center justify-center font-display font-bold text-accent-warm text-sm">{c.initials || c.name.slice(0,2)}</div>
-              )}
-              <span class="font-display font-medium text-primary/80 text-sm">{c.name}</span>
+      {cases.map((c) => {
+        const Tag = c.slug ? 'a' : 'div';
+        const linkProps = c.slug ? { href: `/etudes-de-cas/${c.slug}/` } : {};
+        return (
+          <Tag {...linkProps} class={`reveal card-hover bg-primary/5 border border-primary/10 rounded-2xl p-8 group ${c.slug ? 'block' : ''}`}>
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                {c.logo ? (
+                  <img src={c.logo} alt={c.name} class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
+                ) : (
+                  <div class="w-10 h-10 rounded-lg bg-accent-warm/15 border border-accent-warm/30 flex items-center justify-center font-display font-bold text-accent-warm text-sm">{c.initials || c.name.slice(0,2)}</div>
+                )}
+                <span class="font-display font-medium text-primary/80 text-sm">{c.name}</span>
+              </div>
+              <span class="inline-flex items-center rounded-full bg-accent-warm/10 border border-accent-warm/20 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-warm">
+                {c.tag}
+              </span>
             </div>
-            <span class="inline-flex items-center rounded-full bg-accent-warm/10 border border-accent-warm/20 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-warm">
-              {c.tag}
-            </span>
-          </div>
 
-          <div class="mb-4">
-            <span class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-primary counter-value" data-target={c.metric}>{c.metric}</span>
-            <span class="block text-sm text-primary/50 mt-1">{c.metricLabel}</span>
-          </div>
+            <div class="mb-4">
+              <span class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-primary counter-value" data-target={c.metric}>{c.metric}</span>
+              <span class="block text-sm text-primary/50 mt-1">{c.metricLabel}</span>
+            </div>
 
-          <p class="text-primary/60 leading-relaxed text-sm">{c.description}</p>
-        </div>
-      ))}
+            <p class="text-primary/60 leading-relaxed text-sm">{c.description}</p>
+            
+            {c.slug && (
+              <span class="inline-flex items-center gap-2 text-sm text-accent-warm mt-4 group-hover:gap-3 transition-all">
+                Voir l'étude de cas
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            )}
+          </Tag>
+        );
+      })}
     </div>
   </div>
 </section>

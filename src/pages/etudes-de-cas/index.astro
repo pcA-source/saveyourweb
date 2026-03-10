@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const cases = [
+  {
+    slug: "lexpert-comptable",
+    logo: "/logos/lexpert-comptable.png",
+    name: "L-Expert-Comptable.com",
+    sector: "Services B2B / Comptabilité",
+    metric: "1,2M",
+    metricLabel: "visites SEO/mois",
+    tags: ["SEO B2B", "Content Strategy", "Lead Generation"],
+  },
+  {
+    slug: "nrj",
+    logo: "/logos/nrj.png",
+    name: "NRJ Group",
+    sector: "Média & Entertainment",
+    metric: "+37%",
+    metricLabel: "trafic hors-marque",
+    tags: ["SEO Technique", "Multi-sites", "SEA"],
+  },
+  {
+    slug: "jd2m",
+    logo: "/logos/jd2m.png",
+    name: "JD2M",
+    sector: "Fintech / Services Comptables",
+    metric: "+52%",
+    metricLabel: "trafic SEO en 18 mois",
+    tags: ["SEO Technique", "Niche B2B", "Fintech"],
+  },
+  {
+    slug: "edenred",
+    logo: "/logos/edenred.png",
+    name: "Edenred",
+    sector: "Fintech / Services aux entreprises",
+    metric: "+58%",
+    metricLabel: "trafic qualifié",
+    tags: ["SEO B2B", "Fintech", "International"],
+  },
+  {
+    slug: "freelance-republik",
+    logo: "/logos/freelance-republik.png",
+    name: "Freelance Republik",
+    sector: "Plateforme freelance / RH",
+    metric: "+127%",
+    metricLabel: "trafic organique",
+    tags: ["SEO Marketplace", "Lead Gen", "B2B/B2C"],
+  },
+  {
+    slug: "izac",
+    logo: "/logos/izac.png",
+    name: "IZAC",
+    sector: "E-commerce / Mode masculine",
+    metric: "+94%",
+    metricLabel: "trafic e-commerce",
+    tags: ["SEO E-commerce", "Mode", "Omnicanal"],
+  },
+  {
+    slug: "zama",
+    logo: "",
+    name: "Zama",
+    initials: "Z",
+    sector: "Tech / Cryptographie & IA",
+    metric: "+243%",
+    metricLabel: "trafic développeurs",
+    tags: ["SEO Tech", "Developer Marketing", "International"],
+  },
+];
+
+const stats = [
+  { value: "1,2M", label: "visites SEO/mois" },
+  { value: "+89%", label: "croissance moyenne" },
+  { value: "50+", label: "clients accompagnés" },
+  { value: "9 ans", label: "d'expertise SEO" },
+];
+---
+
+<Layout 
+  title="Études de cas SEO — Résultats clients | Save Your Web"
+  description="Découvrez comment Save Your Web a aidé NRJ, Edenred, IZAC et d'autres à booster leur trafic SEO et leur chiffre d'affaires. +89% de croissance moyenne."
+>
+  <Navbar />
+  <main class="pt-32 pb-24 bg-black min-h-screen">
+    <!-- Hero -->
+    <section class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20 mb-20">
+      <div class="animate-fade-in-up">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-px w-6 bg-accent-warm"></div>
+          <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Études de cas</span>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 max-w-4xl">
+          Des résultats, pas des promesses<span class="text-accent-warm">.</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-primary/60 mb-16 max-w-2xl">
+          Découvrez comment nous avons aidé des entreprises de toutes tailles à booster leur trafic SEO et leur chiffre d'affaires.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((s) => (
+            <div class="bg-primary/5 border border-primary/10 rounded-2xl p-6 text-center">
+              <span class="font-display text-3xl md:text-4xl font-medium tracking-tighter text-primary counter-value" data-target={s.value}>{s.value}</span>
+              <span class="block text-sm text-primary/50 mt-1">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Cases Grid -->
+    <section class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cases.map((c) => (
+          <a href={`/etudes-de-cas/${c.slug}/`} class="reveal card-hover bg-primary/5 border border-primary/10 rounded-2xl p-8 group block">
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                {c.logo ? (
+                  <img src={c.logo} alt={c.name} class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
+                ) : (
+                  <div class="w-10 h-10 rounded-lg bg-accent-warm/15 border border-accent-warm/30 flex items-center justify-center font-display font-bold text-accent-warm text-sm">{c.initials}</div>
+                )}
+                <div>
+                  <span class="font-display font-medium text-primary/80 text-sm block">{c.name}</span>
+                  <span class="text-xs text-primary/40">{c.sector}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <span class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-primary counter-value" data-target={c.metric}>{c.metric}</span>
+              <span class="block text-sm text-primary/50 mt-1">{c.metricLabel}</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              {c.tags.map((tag) => (
+                <span class="inline-flex items-center rounded-full bg-accent-warm/10 border border-accent-warm/20 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-accent-warm">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <span class="inline-flex items-center gap-2 text-sm text-accent-warm group-hover:gap-3 transition-all">
+              Voir l'étude de cas
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20 mt-20">
+      <div class="reveal">
+        <div class="relative rounded-[2rem] overflow-hidden border border-primary/10">
+          <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent-warm/15 via-black to-accent-warm/5"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsl(25_100%_50%/0.1)_0%,_transparent_50%)]"></div>
+          </div>
+          <div class="relative z-10 p-8 md:p-16 text-center">
+            <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-4">
+              Votre entreprise mérite<br />
+              <span class="text-primary/70">ces résultats.</span>
+            </h2>
+            <p class="text-lg text-primary/60 mb-8 max-w-xl mx-auto">
+              Demandez votre audit gratuit et découvrez le potentiel SEO de votre site.
+            </p>
+            <a href="/#contact" class="cta-glow inline-flex items-center gap-3 rounded-full pl-8 pr-3 py-3 bg-primary text-primary-foreground font-medium text-lg hover:bg-primary/90 transition-colors">
+              Demander mon audit gratuit
+              <span class="w-12 h-12 rounded-full bg-primary-foreground text-primary flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
