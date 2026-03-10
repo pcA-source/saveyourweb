@@ -7,6 +7,8 @@
 interface Env {
   NOTIFY_EMAIL: string;
   ALLOWED_ORIGIN: string;
+  DISCORD_WEBHOOK_URL: string;
+  RESEND_API_KEY?: string;
   SMTP_HOST: string;
   SMTP_PORT: string;
   SMTP_USER: string;
@@ -72,7 +74,41 @@ export default {
     }
 
     try {
-      const body = (await request.json()) as FormData;
+      const body = await request.json() as any;
+
+      // Handle devis validation
+      if (body.type === 'devis_validation') {
+        const timestamp = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
+        const toursList = (body.modules_tours || []).join('\n');
+        const lrList = (body.modules_lr || []).join('\n');
+        
+        const discordPayload = {
+          embeds: [{
+            title: `✅ Devis validé — ${body.client || 'Client'}`,
+            color: 0x22c55e,
+            fields: [
+              ...(toursList ? [{ name: '📍 Tours', value: toursList, inline: false }] : []),
+              ...(lrList ? [{ name: '📍 La Rochelle', value: lrList, inline: false }] : []),
+              { name: '💰 Setup total', value: `${(body.total_setup || 0).toLocaleString('fr-FR')} € HT`, inline: true },
+              { name: '📆 Mensuel total', value: `${(body.total_monthly || 0).toLocaleString('fr-FR')} € HT/mois`, inline: true },
+            ],
+            footer: { text: `Devis ${body.devis || ''} • ${timestamp}` },
+          }],
+        };
+
+        if (env.DISCORD_WEBHOOK_URL) {
+          await fetch(env.DISCORD_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(discordPayload),
+          }).catch(() => {});
+        }
+
+        return new Response(
+          JSON.stringify({ success: true }),
+          { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
+        );
+      }
 
       if (!body.name?.trim() || !body.email?.trim() || !body.message?.trim()) {
         return new Response(

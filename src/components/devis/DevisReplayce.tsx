@@ -295,6 +295,31 @@ function SubtotalBar({ label, setup, monthly }) {
 export default function Devis() {
   const [selT, setSelT] = useState({ sea_tours: true, seo_tours: true, meta_tours: false, tiktok_tours: false });
   const [selL, setSelL] = useState({ prelaunch: true, sea_lr: true, seo_lr: false, meta_lr: false });
+  const [validationState, setValidationState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  const handleValidate = async () => {
+    setValidationState('sending');
+    const selectedTours = MODULES_TOURS.filter(m => selT[m.id]).map(m => `${m.icon} ${m.label} — Setup ${m.setup}€ / ${m.monthly}€/mois`);
+    const selectedLR = MODULES_LR.filter(m => selL[m.id]).map(m => `${m.icon} ${m.label} — Setup ${m.setup}€ / ${m.monthly}€/mois`);
+    try {
+      await fetch('https://saveyourweb-contact.pc-relange.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'devis_validation',
+          client: 'Giovanni — Replayce',
+          devis: 'replayce-mars-2026',
+          modules_tours: selectedTours,
+          modules_lr: selectedLR,
+          total_setup: totalSetup,
+          total_monthly: totalMonthly,
+        }),
+      });
+      setValidationState('sent');
+    } catch {
+      setValidationState('error');
+    }
+  };
 
   const calc = (mods, sel) => mods.reduce(
     (acc, m) => sel[m.id] ? { setup: acc.setup + m.setup, monthly: acc.monthly + m.monthly } : acc,
@@ -566,7 +591,7 @@ export default function Devis() {
             </ul>
           </div>
 
-          {/* ── CTA style SYW ── */}
+          {/* ── CTA VALIDATION ── */}
           <div style={{
             marginTop: 24,
             background: "linear-gradient(135deg, hsl(25 100% 50% / 0.15), hsl(25 100% 50% / 0.05))",
@@ -582,37 +607,75 @@ export default function Devis() {
               pointerEvents: "none",
             }} />
             <div style={{ position: "relative", zIndex: 1 }}>
-              <h2 style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 500, fontSize: 28,
-                letterSpacing: "-0.02em", color: PRIMARY,
-                margin: "0 0 8px", lineHeight: 1.2,
-              }}>
-                Prenez le contrôle de votre visibilité<br />
-                <span style={{ color: WHITE70 }}>dès aujourd'hui.</span>
-              </h2>
-              <p style={{ color: WHITE60, fontFamily: "Inter, sans-serif", fontSize: 15, margin: "0 0 28px", fontWeight: 300 }}>
-                Une question ? Répondez à ce mail — sans engagement.
-              </p>
-              {/* CTA button style SYW exacte : rounded-full pl-8 pr-3 py-3 bg-primary text-black */}
-              <a href="mailto:contact@saveyourweb.fr" style={{
-                display: "inline-flex", alignItems: "center", gap: 16,
-                borderRadius: 9999, paddingLeft: 28, paddingRight: 12, paddingTop: 12, paddingBottom: 12,
-                background: PRIMARY, color: "#000",
-                fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, fontSize: 16,
-                textDecoration: "none", transition: "opacity 0.2s",
-              }}>
-                Répondre à cette proposition
-                <span style={{
-                  width: 40, height: 40, borderRadius: "50%",
-                  background: "#000", color: PRIMARY,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
-                  </svg>
-                </span>
-              </a>
+              {validationState === 'sent' ? (
+                <>
+                  <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
+                  <h2 style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontWeight: 500, fontSize: 28,
+                    letterSpacing: "-0.02em", color: PRIMARY,
+                    margin: "0 0 8px", lineHeight: 1.2,
+                  }}>
+                    Proposition validée !
+                  </h2>
+                  <p style={{ color: WHITE60, fontFamily: "Inter, sans-serif", fontSize: 15, margin: "0 0 16px", fontWeight: 300 }}>
+                    Merci Giovanni ! Votre sélection a bien été envoyée.<br />
+                    Je reviens vers vous sous 24h avec le devis officiel.
+                  </p>
+                  <a href="mailto:contact@saveyourweb.fr" style={{
+                    color: ACCENT, fontFamily: "Inter, sans-serif", fontSize: 14, textDecoration: "none",
+                  }}>
+                    Une question ? contact@saveyourweb.fr
+                  </a>
+                </>
+              ) : (
+                <>
+                  <h2 style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontWeight: 500, fontSize: 28,
+                    letterSpacing: "-0.02em", color: PRIMARY,
+                    margin: "0 0 8px", lineHeight: 1.2,
+                  }}>
+                    Cette sélection vous convient ?<br />
+                    <span style={{ color: WHITE70 }}>Validez pour passer à l'étape suivante.</span>
+                  </h2>
+                  <p style={{ color: WHITE60, fontFamily: "Inter, sans-serif", fontSize: 15, margin: "0 0 28px", fontWeight: 300 }}>
+                    En validant, vous confirmez les {selected} module{selected > 1 ? 's' : ''} sélectionné{selected > 1 ? 's' : ''} pour un total de {totalSetup.toLocaleString("fr-FR")}€ HT de setup + {totalMonthly.toLocaleString("fr-FR")}€ HT/mois.
+                  </p>
+                  <button
+                    onClick={handleValidate}
+                    disabled={validationState === 'sending' || selected === 0}
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: 16,
+                      borderRadius: 9999, paddingLeft: 28, paddingRight: 12, paddingTop: 12, paddingBottom: 12,
+                      background: selected === 0 ? WHITE20 : ACCENT, color: "#000",
+                      fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 16,
+                      border: "none", cursor: selected === 0 ? "not-allowed" : "pointer",
+                      transition: "opacity 0.2s, transform 0.1s",
+                      opacity: validationState === 'sending' ? 0.7 : 1,
+                    }}
+                  >
+                    {validationState === 'sending' ? 'Envoi en cours...' : 'Valider cette proposition'}
+                    <span style={{
+                      width: 40, height: 40, borderRadius: "50%",
+                      background: "#000", color: PRIMARY,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </span>
+                  </button>
+                  {validationState === 'error' && (
+                    <p style={{ color: '#ef4444', fontFamily: "Inter, sans-serif", fontSize: 13, marginTop: 12 }}>
+                      Erreur d'envoi. Vous pouvez répondre directement à contact@saveyourweb.fr
+                    </p>
+                  )}
+                  <p style={{ color: WHITE50, fontFamily: "Inter, sans-serif", fontSize: 12, marginTop: 16 }}>
+                    Sans engagement — cette validation n'est pas un contrat.
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
