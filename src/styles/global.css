@@ -32,6 +32,13 @@
     0%, 100% { box-shadow: 0 0 8px hsl(25 100% 50% / 0.4); }
     50% { box-shadow: 0 0 16px hsl(25 100% 50% / 0.7); }
   }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
 }
 
 /* Selection */

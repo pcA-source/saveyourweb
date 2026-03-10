@@ -1,0 +1,64 @@
+---
+const testimonials = [
+  {
+    quote: "Pierre-Charles sait faire avancer ses sujets grâce à ses talents de diplomate. Il a accompagné les différents métiers avec de bons résultats à la clé.",
+    name: "Benoît Seignoret",
+    role: "Responsable Marketing Digital",
+    company: "NRJ Group",
+    initial: "B",
+  },
+  {
+    quote: "Il ne nous a pas seulement aidé sur le référencement, il nous a donné une orientation pour notre développement global. Un brillant communicant.",
+    name: "Thomas Narcante",
+    role: "CEO",
+    company: "XTEP",
+    initial: "T",
+  },
+  {
+    quote: "Merci pour cette formation SEO, la pédagogie et les livrables très qualitatifs que j'ai pu réutiliser directement pour mes clients.",
+    name: "Fabio Nicollini",
+    role: "Directeur expérience client",
+    company: "Varibase",
+    initial: "F",
+  },
+];
+---
+
+<section class="py-24 lg:py-32 bg-black relative">
+  <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="h-px w-6 bg-accent-warm"></div>
+      <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Témoignages</span>
+    </div>
+
+    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-16 max-w-3xl">
+      Ce qu'ils disent de nous.<br />
+      <span class="text-primary/50">Sans filtre.</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((t) => (
+        <div class="bg-primary/5 border border-primary/10 rounded-2xl p-8 md:p-10 relative group hover:bg-primary/[0.07] transition-colors">
+          <!-- Quote mark -->
+          <div class="absolute top-6 right-8 font-display text-7xl text-accent-warm/15 leading-none select-none" aria-hidden="true">"</div>
+
+          <blockquote class="relative z-10">
+            <p class="text-lg text-primary/80 leading-relaxed mb-8 italic">
+              "{t.quote}"
+            </p>
+
+            <footer class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent-warm/20 border border-accent-warm/30 flex items-center justify-center flex-shrink-0">
+                <span class="font-display text-lg font-medium text-accent-warm">{t.initial}</span>
+              </div>
+              <div>
+                <cite class="not-italic font-medium text-primary block">{t.name}</cite>
+                <span class="text-sm text-primary/50">{t.role}, {t.company}</span>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

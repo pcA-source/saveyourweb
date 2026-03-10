@@ -2,12 +2,51 @@
 ---
 
 <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
-  <!-- Background gradient (no video) -->
+  <!-- Rich background -->
   <div class="absolute inset-0 z-0">
+    <!-- Base gradient -->
     <div class="absolute inset-0 bg-gradient-to-br from-black via-black to-accent-warm/10"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(25_100%_50%/0.08)_0%,_transparent_60%)]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(25_100%_50%/0.05)_0%,_transparent_50%)]"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50"></div>
+    
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    
+    <!-- Glow orbs -->
+    <div class="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-accent-warm/8 rounded-full blur-[120px] animate-pulse-slow"></div>
+    <div class="absolute bottom-[20%] left-[5%] w-[300px] h-[300px] bg-accent-warm/5 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+    <div class="absolute top-[50%] right-[30%] w-[200px] h-[200px] bg-primary/5 rounded-full blur-[80px]"></div>
+    
+    <!-- Radial gradients -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(25_100%_50%/0.12)_0%,_transparent_50%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(25_100%_50%/0.06)_0%,_transparent_40%)]"></div>
+    
+    <!-- Top/bottom vignette -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
+    
+    <!-- Floating particles SVG -->
+    <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="15%" cy="20%" r="1.5" fill="hsl(25 100% 50%)" class="animate-float">
+        <animate attributeName="cy" values="20%;18%;20%" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="80%" cy="30%" r="1" fill="hsl(25 100% 50%)" class="animate-float">
+        <animate attributeName="cy" values="30%;27%;30%" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="60%" cy="70%" r="2" fill="hsl(25 100% 50%/0.6)">
+        <animate attributeName="cy" values="70%;67%;70%" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="25%" cy="60%" r="1" fill="hsl(0 0% 95%/0.4)">
+        <animate attributeName="cy" values="60%;57%;60%" dur="3.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="90%" cy="80%" r="1.5" fill="hsl(25 100% 50%/0.4)">
+        <animate attributeName="cy" values="80%;77%;80%" dur="4.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="45%" cy="15%" r="1" fill="hsl(0 0% 95%/0.3)">
+        <animate attributeName="cy" values="15%;12%;15%" dur="5.5s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Connecting lines -->
+      <line x1="15%" y1="20%" x2="45%" y2="15%" stroke="hsl(25 100% 50%/0.06)" stroke-width="0.5"/>
+      <line x1="80%" y1="30%" x2="60%" y2="70%" stroke="hsl(25 100% 50%/0.04)" stroke-width="0.5"/>
+      <line x1="60%" y1="70%" x2="90%" y2="80%" stroke="hsl(25 100% 50%/0.04)" stroke-width="0.5"/>
+    </svg>
   </div>
 
   <div class="relative z-10 w-full max-w-7xl mx-auto px-7 md:px-12 lg:px-20">

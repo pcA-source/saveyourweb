@@ -1,0 +1,102 @@
+---
+const cases = [
+  {
+    logo: "/logos/lexpert-comptable.png",
+    name: "L-Expert-Comptable",
+    tag: "SaaS",
+    metric: "+23%",
+    metricLabel: "signatures clients via SEO",
+    description: "1,2M visites SEO/mois. Management de 67 rédacteurs.",
+  },
+  {
+    logo: "/logos/izac.png",
+    name: "IZAC",
+    tag: "E-commerce",
+    metric: "+156%",
+    metricLabel: "CA online/offline",
+    description: "Marque mode masculine. +94% trafic e-commerce, #2 sur 'costume homme français'.",
+  },
+  {
+    logo: "/logos/freelance-republik.png",
+    name: "Freelance Republik",
+    tag: "SaaS",
+    metric: "+73%",
+    metricLabel: "inscriptions freelances",
+    description: "Marketplace française. -68% coût acquisition, SEO = 1er canal de leads.",
+  },
+  {
+    logo: "/logos/jd2m.png",
+    name: "JD2M",
+    tag: "SaaS",
+    metric: "78%",
+    metricLabel: "leads depuis Google",
+    description: "+52% trafic SEO, positions #1-2 sur requêtes niche.",
+  },
+  {
+    logo: "/logos/nrj.png",
+    name: "NRJ Group",
+    tag: "Media",
+    metric: "+37%",
+    metricLabel: "audience qualifiée",
+    description: "4 sites radio optimisés. #1 sur 'blagues', Core Web Vitals améliorés.",
+  },
+  {
+    logo: "/logos/edenred.png",
+    name: "Edenred",
+    tag: "B2B · CAC 40",
+    metric: "+58%",
+    metricLabel: "leads B2B qualifiés",
+    description: "12 mots-clés top 3, ROI SEO vs Ads x3.",
+  },
+  {
+    logo: "/logos/replayce.png",
+    name: "Replayce",
+    tag: "Local",
+    metric: "+2 400",
+    metricLabel: "ventes en boutique via Google",
+    description: "+187% d'appels et itinéraires via Google Business Profile.",
+  },
+];
+---
+
+<section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent-warm/3 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="h-px w-6 bg-accent-warm"></div>
+      <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Études de cas</span>
+    </div>
+
+    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 max-w-3xl">
+      Des résultats concrets.<br />
+      <span class="text-primary/50">Pas des promesses.</span>
+    </h2>
+
+    <p class="text-lg text-primary/60 mb-16 max-w-2xl">
+      Chaque client a une histoire différente. Les chiffres, eux, ne mentent pas.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {cases.map((c) => (
+        <div class="bg-primary/5 border border-primary/10 rounded-2xl p-8 hover:bg-primary/[0.07] transition-colors group">
+          <div class="flex items-center justify-between mb-6">
+            <div class="h-10 flex items-center">
+              <img src={c.logo} alt={c.name} class="h-8 max-w-[120px] object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <span class="inline-flex items-center rounded-full bg-accent-warm/10 border border-accent-warm/20 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-warm">
+              {c.tag}
+            </span>
+          </div>
+
+          <div class="mb-4">
+            <span class="font-display text-4xl md:text-5xl font-medium tracking-tighter text-primary">{c.metric}</span>
+            <span class="block text-sm text-primary/50 mt-1">{c.metricLabel}</span>
+          </div>
+
+          <p class="text-primary/60 leading-relaxed text-sm">{c.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

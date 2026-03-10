@@ -1,0 +1,179 @@
+---
+---
+
+<section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+  <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent-warm/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-7 md:px-12 lg:px-20">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="h-px w-6 bg-accent-warm"></div>
+      <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Simulateur</span>
+    </div>
+
+    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 max-w-3xl">
+      Combien de CA caché<br />
+      <span class="text-primary/50">dans votre SEO ?</span>
+    </h2>
+
+    <p class="text-lg text-primary/60 mb-16 max-w-2xl">
+      Estimez le chiffre d'affaires supplémentaire que vous pourriez générer avec un SEO optimisé.
+    </p>
+
+    <div class="bg-primary/5 border border-primary/10 rounded-2xl p-8 md:p-12">
+      <!-- Slider: Trafic -->
+      <div class="mb-10">
+        <div class="flex items-center justify-between mb-3">
+          <label for="calc-traffic" class="text-sm font-medium text-primary/70">Trafic mensuel actuel</label>
+          <span id="calc-traffic-value" class="font-display text-lg font-medium text-accent-warm">1 500</span>
+        </div>
+        <input
+          type="range"
+          id="calc-traffic"
+          min="100"
+          max="50000"
+          value="1500"
+          step="100"
+          class="calc-slider w-full"
+        />
+        <div class="flex justify-between text-xs text-primary/30 mt-1">
+          <span>100</span>
+          <span>50 000</span>
+        </div>
+      </div>
+
+      <!-- Slider: Taux de conversion -->
+      <div class="mb-10">
+        <div class="flex items-center justify-between mb-3">
+          <label for="calc-conversion" class="text-sm font-medium text-primary/70">Taux de conversion</label>
+          <span id="calc-conversion-value" class="font-display text-lg font-medium text-accent-warm">1.2%</span>
+        </div>
+        <input
+          type="range"
+          id="calc-conversion"
+          min="0.1"
+          max="5"
+          value="1.2"
+          step="0.1"
+          class="calc-slider w-full"
+        />
+        <div class="flex justify-between text-xs text-primary/30 mt-1">
+          <span>0.1%</span>
+          <span>5%</span>
+        </div>
+      </div>
+
+      <!-- Slider: Panier moyen -->
+      <div class="mb-12">
+        <div class="flex items-center justify-between mb-3">
+          <label for="calc-basket" class="text-sm font-medium text-primary/70">Panier moyen</label>
+          <span id="calc-basket-value" class="font-display text-lg font-medium text-accent-warm">85 €</span>
+        </div>
+        <input
+          type="range"
+          id="calc-basket"
+          min="10"
+          max="500"
+          value="85"
+          step="5"
+          class="calc-slider w-full"
+        />
+        <div class="flex justify-between text-xs text-primary/30 mt-1">
+          <span>10 €</span>
+          <span>500 €</span>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="border-t border-primary/10 pt-8 text-center">
+        <p class="text-sm text-primary/50 uppercase tracking-wide mb-3">Potentiel de CA caché par mois</p>
+        <p id="calc-result" class="font-display text-5xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-accent-warm mb-6">
+          612 €
+        </p>
+        <a href="#contact" class="inline-flex items-center gap-2 bg-accent-warm text-black font-medium px-8 py-4 rounded-full hover:bg-accent-warm/90 transition-colors text-lg">
+          Récupérer ce potentiel
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <p class="mt-6 text-xs text-primary/30 italic">
+      * Basé sur +40% de trafic qualifié après 12 mois — résultat moyen constaté chez nos clients.
+    </p>
+  </div>
+</section>
+
+<style>
+  .calc-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: hsl(0 0% 20%);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: hsl(25 100% 50%);
+    cursor: pointer;
+    box-shadow: 0 0 10px hsl(25 100% 50% / 0.4);
+    transition: box-shadow 0.2s;
+  }
+
+  .calc-slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 16px hsl(25 100% 50% / 0.7);
+  }
+
+  .calc-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: hsl(25 100% 50%);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px hsl(25 100% 50% / 0.4);
+  }
+
+  .calc-slider::-moz-range-track {
+    height: 6px;
+    border-radius: 3px;
+    background: hsl(0 0% 20%);
+  }
+</style>
+
+<script>
+  const traffic = document.getElementById('calc-traffic') as HTMLInputElement;
+  const conversion = document.getElementById('calc-conversion') as HTMLInputElement;
+  const basket = document.getElementById('calc-basket') as HTMLInputElement;
+  const trafficVal = document.getElementById('calc-traffic-value')!;
+  const conversionVal = document.getElementById('calc-conversion-value')!;
+  const basketVal = document.getElementById('calc-basket-value')!;
+  const result = document.getElementById('calc-result')!;
+
+  function fmt(n: number): string {
+    return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(n);
+  }
+
+  function calculate() {
+    const t = parseFloat(traffic.value);
+    const c = parseFloat(conversion.value) / 100;
+    const b = parseFloat(basket.value);
+    const potential = t * 0.4 * c * b;
+
+    trafficVal.textContent = fmt(t);
+    conversionVal.textContent = parseFloat(conversion.value).toFixed(1) + '%';
+    basketVal.textContent = fmt(b) + ' €';
+    result.textContent = fmt(Math.round(potential)) + ' €';
+  }
+
+  traffic.addEventListener('input', calculate);
+  conversion.addEventListener('input', calculate);
+  basket.addEventListener('input', calculate);
+
+  calculate();
+</script>
