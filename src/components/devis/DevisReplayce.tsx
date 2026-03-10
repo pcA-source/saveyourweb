@@ -301,8 +301,12 @@ export default function Devis() {
     setValidationState('sending');
     const selectedTours = MODULES_TOURS.filter(m => selT[m.id]).map(m => `${m.icon} ${m.label} — Setup ${m.setup}€ / ${m.monthly}€/mois`);
     const selectedLR = MODULES_LR.filter(m => selL[m.id]).map(m => `${m.icon} ${m.label} — Setup ${m.setup}€ / ${m.monthly}€/mois`);
+    const allSelected = [
+      ...MODULES_TOURS.filter(m => selT[m.id]),
+      ...MODULES_LR.filter(m => selL[m.id]),
+    ];
     try {
-      await fetch('https://saveyourweb-contact.pc-relange.workers.dev', {
+      const res = await fetch('https://saveyourweb-contact.pc-relange.workers.dev', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -311,10 +315,20 @@ export default function Devis() {
           devis: 'replayce-mars-2026',
           modules_tours: selectedTours,
           modules_lr: selectedLR,
+          modules_detail: allSelected.map(m => ({
+            label: m.label,
+            sublabel: m.sublabel,
+            setup: m.setup,
+            monthly: m.monthly,
+            details: m.details,
+          })),
+          qonto_client_id: '019cbada-2452-7d2f-9c5e-197eb3a70494',
+          qonto_header: 'Proposition commerciale — Stratégie digitale locale Tours & La Rochelle',
           total_setup: totalSetup,
           total_monthly: totalMonthly,
         }),
       });
+      const data = await res.json();
       setValidationState('sent');
     } catch {
       setValidationState('error');

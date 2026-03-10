@@ -10,6 +10,8 @@ interface Env {
   DISCORD_WEBHOOK_URL: string;
   DISCORD_DEVIS_WEBHOOK_URL?: string;
   RESEND_API_KEY?: string;
+  QONTO_ORG_SLUG: string;
+  QONTO_SECRET_KEY: string;
   SMTP_HOST: string;
   SMTP_PORT: string;
   SMTP_USER: string;
@@ -82,7 +84,65 @@ export default {
         const timestamp = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
         const toursList = (body.modules_tours || []).join('\n');
         const lrList = (body.modules_lr || []).join('\n');
+
+        // Build Qonto quote items from selected modules
+        const qontoItems: any[] = [];
+        for (const mod of (body.modules_detail || [])) {
+          if (mod.setup > 0) {
+            qontoItems.push({
+              title: `${mod.label} (Setup)`,
+              description: (mod.details || []).join(', ').substring(0, 1800),
+              quantity: '1', unit: 'forfait',
+              unit_price: { value: mod.setup.toFixed(2), currency: 'EUR' },
+              vat_rate: '0.20', currency: 'EUR',
+            });
+          }
+          if (mod.monthly > 0) {
+            qontoItems.push({
+              title: `${mod.label} (Mensuel)`,
+              description: `Accompagnement mensuel — ${mod.sublabel || ''}`.substring(0, 1800),
+              quantity: '1', unit: 'mois',
+              unit_price: { value: mod.monthly.toFixed(2), currency: 'EUR' },
+              vat_rate: '0.20', currency: 'EUR',
+            });
+          }
+        }
+
+        // Create quote on Qonto if we have items and credentials
+        let qontoQuote: any = null;
+        if (qontoItems.length > 0 && env.QONTO_ORG_SLUG && env.QONTO_SECRET_KEY && body.qonto_client_id) {
+          const today = new Date().toISOString().split('T')[0];
+          const expiry = new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0];
+          
+          try {
+            const qRes = await fetch('https://thirdparty.qonto.com/v2/quotes', {
+              method: 'POST',
+              headers: {
+                'Authorization': `${env.QONTO_ORG_SLUG}:${env.QONTO_SECRET_KEY}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                client_id: body.qonto_client_id,
+                issue_date: today,
+                expiry_date: expiry,
+                currency: 'EUR',
+                terms_and_conditions: 'Devis valable 30 jours. Sans engagement, résiliable avec 30 jours de préavis. Budget publicitaire non inclus.',
+                header: body.qonto_header || 'Proposition commerciale — Save Your Web',
+                items: qontoItems,
+              }),
+            });
+            const qData = await qRes.json() as any;
+            qontoQuote = qData.quote || null;
+          } catch (e) {
+            // Qonto failed, continue with Discord notification
+          }
+        }
         
+        // Discord notification
+        const qontoInfo = qontoQuote 
+          ? `\n📄 **Devis Qonto créé** : ${qontoQuote.number} (${qontoQuote.status}) — ${qontoQuote.total_amount?.value || '?'}€ TTC`
+          : (qontoItems.length > 0 ? '\n⚠️ Devis Qonto non créé (credentials manquants ou erreur)' : '');
+
         const discordPayload = {
           embeds: [{
             title: `✅ Devis validé — ${body.client || 'Client'}`,
@@ -90,14 +150,14 @@ export default {
             fields: [
               ...(toursList ? [{ name: '📍 Tours', value: toursList, inline: false }] : []),
               ...(lrList ? [{ name: '📍 La Rochelle', value: lrList, inline: false }] : []),
-              { name: '💰 Setup total', value: `${(body.total_setup || 0).toLocaleString('fr-FR')} € HT`, inline: true },
-              { name: '📆 Mensuel total', value: `${(body.total_monthly || 0).toLocaleString('fr-FR')} € HT/mois`, inline: true },
+              { name: '💰 Setup total', value: `${body.total_setup || 0} € HT`, inline: true },
+              { name: '📆 Mensuel total', value: `${body.total_monthly || 0} € HT/mois`, inline: true },
+              ...(qontoQuote ? [{ name: '📄 Qonto', value: `Devis **${qontoQuote.number}** créé — ${qontoQuote.total_amount?.value || '?'}€ TTC`, inline: false }] : []),
             ],
             footer: { text: `Devis ${body.devis || ''} • ${timestamp}` },
           }],
         };
 
-        // Send to #devis-saveyourweb channel
         const devisWebhook = env.DISCORD_DEVIS_WEBHOOK_URL || env.DISCORD_WEBHOOK_URL;
         if (devisWebhook) {
           await fetch(devisWebhook, {
@@ -108,7 +168,10 @@ export default {
         }
 
         return new Response(
-          JSON.stringify({ success: true }),
+          JSON.stringify({ 
+            success: true, 
+            qonto_quote: qontoQuote ? { id: qontoQuote.id, number: qontoQuote.number, status: qontoQuote.status } : null 
+          }),
           { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
         );
       }
