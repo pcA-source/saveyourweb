@@ -1,0 +1,18 @@
+---
+const sectors = [
+  "Luxe", "E-commerce", "SaaS", "B2B", "Santé", "Finance", "Immobilier", "Juridique"
+];
+---
+
+<section class="py-10 border-y border-primary/5 bg-black overflow-hidden relative">
+  <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+  <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+  
+  <div class="flex items-center gap-16 md:gap-32 w-max animate-marquee">
+    {[...sectors, ...sectors, ...sectors, ...sectors].map((sector) => (
+      <span class="font-display text-xl md:text-2xl font-bold tracking-widest text-primary/20 uppercase whitespace-nowrap">
+        {sector}
+      </span>
+    ))}
+  </div>
+</section>

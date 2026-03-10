@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Mentions légales — Save Your Web"
+  description="Mentions légales du site saveyourweb.fr — Save Your Web SASU, agence SEO & SEA."
+>
+  <Navbar />
+  <main class="pt-32 pb-24 min-h-screen">
+    <div class="max-w-3xl mx-auto px-7 md:px-12">
+      <h1 class="font-display text-4xl md:text-5xl font-medium tracking-tight mb-12">Mentions légales</h1>
+      
+      <div class="space-y-10 text-primary/80 leading-relaxed">
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Éditeur du site</h2>
+          <p>
+            <strong class="text-primary">Save Your Web</strong><br />
+            SASU au capital variable<br />
+            Fondateur : Pierre-Charles Relange<br />
+            Email : <a href="mailto:contact@saveyourweb.fr" class="text-accent-warm hover:underline">contact@saveyourweb.fr</a><br />
+            Site web : <a href="https://saveyourweb.fr" class="text-accent-warm hover:underline">saveyourweb.fr</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Hébergement</h2>
+          <p>
+            Ce site est hébergé par <strong class="text-primary">Cloudflare, Inc.</strong><br />
+            101 Townsend St, San Francisco, CA 94107, États-Unis<br />
+            Site web : <a href="https://www.cloudflare.com" class="text-accent-warm hover:underline" target="_blank" rel="noopener">cloudflare.com</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Propriété intellectuelle</h2>
+          <p>
+            L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, etc.) est la propriété exclusive de Save Your Web, sauf mention contraire. Toute reproduction, distribution, modification, retransmission ou publication de ces éléments est strictement interdite sans l'accord écrit préalable de Save Your Web.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Responsabilité</h2>
+          <p>
+            Save Your Web s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, Save Your Web ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition sur ce site. Save Your Web décline toute responsabilité pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur ce site.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Cookies</h2>
+          <p>
+            Ce site peut utiliser des cookies à des fins de mesure d'audience et d'amélioration de l'expérience utilisateur. Vous pouvez configurer votre navigateur pour refuser les cookies.
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-16">
+        <a href="/" class="text-accent-warm hover:underline font-medium">← Retour à l'accueil</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

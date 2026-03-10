@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Politique de confidentialité — Save Your Web"
+  description="Politique de confidentialité et protection des données personnelles — Save Your Web."
+>
+  <Navbar />
+  <main class="pt-32 pb-24 min-h-screen">
+    <div class="max-w-3xl mx-auto px-7 md:px-12">
+      <h1 class="font-display text-4xl md:text-5xl font-medium tracking-tight mb-12">Politique de confidentialité</h1>
+      
+      <div class="space-y-10 text-primary/80 leading-relaxed">
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Responsable du traitement</h2>
+          <p>
+            <strong class="text-primary">Save Your Web</strong> (SASU), représentée par Pierre-Charles Relange, est responsable du traitement des données collectées sur ce site.<br />
+            Email : <a href="mailto:contact@saveyourweb.fr" class="text-accent-warm hover:underline">contact@saveyourweb.fr</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Données collectées</h2>
+          <p>Nous collectons les données suivantes uniquement via le formulaire de contact :</p>
+          <ul class="list-disc list-inside mt-3 space-y-2 text-primary/70">
+            <li>Nom</li>
+            <li>Adresse email</li>
+            <li>URL du site web (optionnel)</li>
+            <li>Message</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Finalité du traitement</h2>
+          <p>
+            Les données collectées sont utilisées uniquement pour répondre à vos demandes de contact, vous fournir des informations sur nos services, et le cas échéant, établir un devis ou une proposition commerciale.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Base légale</h2>
+          <p>
+            Le traitement de vos données repose sur votre consentement (envoi volontaire du formulaire) et sur notre intérêt légitime à répondre à vos demandes commerciales.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Conservation des données</h2>
+          <p>
+            Vos données personnelles sont conservées pendant une durée maximale de 3 ans à compter de votre dernier contact avec nous, sauf obligation légale contraire.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Vos droits</h2>
+          <p>
+            Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :
+          </p>
+          <ul class="list-disc list-inside mt-3 space-y-2 text-primary/70">
+            <li>Droit d'accès à vos données personnelles</li>
+            <li>Droit de rectification</li>
+            <li>Droit à l'effacement</li>
+            <li>Droit à la limitation du traitement</li>
+            <li>Droit à la portabilité</li>
+            <li>Droit d'opposition</li>
+          </ul>
+          <p class="mt-3">
+            Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@saveyourweb.fr" class="text-accent-warm hover:underline">contact@saveyourweb.fr</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Cookies</h2>
+          <p>
+            Ce site peut utiliser des cookies techniques nécessaires au bon fonctionnement du site. Aucun cookie publicitaire ou de tracking tiers n'est déposé sans votre consentement préalable.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl font-medium text-primary mb-4">Réclamation</h2>
+          <p>
+            Si vous estimez que le traitement de vos données ne respecte pas la réglementation, vous pouvez adresser une réclamation à la CNIL : <a href="https://www.cnil.fr" class="text-accent-warm hover:underline" target="_blank" rel="noopener">www.cnil.fr</a>
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-16">
+        <a href="/" class="text-accent-warm hover:underline font-medium">← Retour à l'accueil</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

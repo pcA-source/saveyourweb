@@ -1,0 +1,87 @@
+---
+---
+
+<section id="contact" class="py-24 lg:py-32 bg-black">
+  <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+    <div class="relative rounded-[2rem] overflow-hidden border border-primary/10">
+      <!-- Background gradient instead of video -->
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-accent-warm/15 via-black to-accent-warm/5"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_hsl(25_100%_50%/0.1)_0%,_transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      <div class="relative z-10 p-8 md:p-16 lg:p-20">
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 max-w-3xl">
+          Prenez le contrôle de votre<br />
+          <span class="text-primary/70">visibilité dès aujourd'hui.</span>
+        </h2>
+        
+        <p class="text-xl text-primary/70 mb-12 max-w-2xl">
+          Demandez votre audit gratuit — sans engagement, expertise pure.
+        </p>
+
+        <!-- Contact Form -->
+        <form id="contact-form" class="max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6" method="POST" action="#">
+          <div class="flex flex-col gap-2">
+            <label for="name" class="text-sm font-medium text-primary/60 uppercase tracking-wider">Nom</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              class="bg-black/50 border border-primary/20 rounded-xl px-4 py-3 text-primary placeholder:text-primary/30 focus:outline-none focus:border-accent-warm/50 transition-colors backdrop-blur-md"
+              placeholder="Votre nom"
+            />
+          </div>
+          
+          <div class="flex flex-col gap-2">
+            <label for="email" class="text-sm font-medium text-primary/60 uppercase tracking-wider">Email</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              class="bg-black/50 border border-primary/20 rounded-xl px-4 py-3 text-primary placeholder:text-primary/30 focus:outline-none focus:border-accent-warm/50 transition-colors backdrop-blur-md"
+              placeholder="votre@email.com"
+            />
+          </div>
+          
+          <div class="flex flex-col gap-2 md:col-span-2">
+            <label for="website" class="text-sm font-medium text-primary/60 uppercase tracking-wider">Site web</label>
+            <input 
+              type="url" 
+              id="website" 
+              name="website"
+              class="bg-black/50 border border-primary/20 rounded-xl px-4 py-3 text-primary placeholder:text-primary/30 focus:outline-none focus:border-accent-warm/50 transition-colors backdrop-blur-md"
+              placeholder="https://votresite.fr"
+            />
+          </div>
+          
+          <div class="flex flex-col gap-2 md:col-span-2">
+            <label for="message" class="text-sm font-medium text-primary/60 uppercase tracking-wider">Message</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="4"
+              class="bg-black/50 border border-primary/20 rounded-xl px-4 py-3 text-primary placeholder:text-primary/30 focus:outline-none focus:border-accent-warm/50 transition-colors backdrop-blur-md resize-none"
+              placeholder="Parlez-nous de votre projet..."
+            ></textarea>
+          </div>
+          
+          <div class="md:col-span-2">
+            <button 
+              type="submit" 
+              class="group flex items-center gap-4 rounded-full pl-8 pr-3 py-3 bg-primary text-primary-foreground font-medium text-lg hover:bg-primary/90 transition-colors"
+            >
+              Envoyer ma demande
+              <span class="w-12 h-12 rounded-full bg-primary-foreground text-primary flex items-center justify-center group-hover:scale-95 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

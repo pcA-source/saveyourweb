@@ -1,0 +1,77 @@
+---
+const services = [
+  {
+    icon: "search",
+    title: "SEO — Référencement Naturel",
+    subtitle: "Croissance durable",
+    description: "Notre méthodologie data-driven élimine les suppositions. Nous identifions les opportunités de trafic les plus rentables et déployons des stratégies chirurgicales pour capter une audience qualifiée.",
+    items: [
+      "Audit technique & structurel complet",
+      "Stratégie sémantique et cocons sur-mesure",
+      "Acquisition de backlinks d'autorité",
+      "Optimisation continue basée sur la data"
+    ]
+  },
+  {
+    icon: "target",
+    title: "SEA — Google Ads & Meta Ads",
+    subtitle: "Résultats immédiats",
+    description: "Des campagnes publicitaires pensées pour le ROI. Nous optimisons chaque euro investi pour maximiser vos conversions et réduire votre coût d'acquisition.",
+    items: [
+      "Campagnes Search, Shopping & Display",
+      "Optimisation des enchères et Quality Score",
+      "A/B testing créatif continu",
+      "Reporting transparent et actionnable"
+    ]
+  }
+];
+---
+
+<section class="relative py-24 lg:py-32 bg-black overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-black via-accent-warm/5 to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center rounded-full border border-primary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+        Nos Services
+      </div>
+      
+      <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+        SEO + SEA : la combinaison gagnante<br />
+        <span class="text-primary/60">pour dominer Google</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {services.map((service) => (
+        <div class="bg-primary/5 backdrop-blur-xl border border-primary/10 rounded-2xl p-8 md:p-12 text-left hover:bg-primary/[0.07] transition-colors">
+          <div class="inline-flex items-center rounded-full bg-accent-warm/10 border border-accent-warm/20 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent-warm mb-6">
+            {service.subtitle}
+          </div>
+          
+          <h3 class="font-display text-2xl md:text-3xl font-medium mb-6">
+            {service.title}
+          </h3>
+          
+          <p class="text-primary/70 mb-10 leading-relaxed">
+            {service.description}
+          </p>
+
+          <ul class="space-y-6">
+            {service.items.map((item) => (
+              <li class="flex items-start gap-4">
+                <div class="mt-1 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(25 100% 50%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                </div>
+                <span class="text-lg font-medium text-primary/90">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

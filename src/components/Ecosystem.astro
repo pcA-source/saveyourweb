@@ -1,0 +1,141 @@
+---
+const expertiseLinks = [
+  {
+    title: "Audit Technique",
+    description: "Les fondations invisibles mais indispensables. Nous éliminons les freins à l'indexation pour que Google comprenne et valorise parfaitement votre site.",
+    services: [
+      "Analyse de logs & Budget crawl",
+      "Amélioration des Core Web Vitals",
+      "Restructuration en silos",
+      "Résolution de pénalités algorithmiques"
+    ]
+  },
+  {
+    title: "Stratégie de Contenu",
+    description: "Le contenu n'est pas roi, c'est le contexte. Nous créons des écosystèmes sémantiques qui répondent aux intentions de recherche et convertissent.",
+    services: [
+      "Cartographie des intentions de recherche",
+      "Déploiement de cocons sémantiques",
+      "Optimisation On-Page (TF-IDF)",
+      "Rédaction experte alignée E-E-A-T"
+    ]
+  },
+  {
+    title: "Netlinking",
+    description: "L'autorité est le carburant de votre visibilité. Nous acquérons des liens puissants et thématiques pour propulser vos pages vers le sommet.",
+    services: [
+      "Acquisition de backlinks premium",
+      "Digital PR & Linkbaiting",
+      "Nettoyage de profil de liens toxiques",
+      "Stratégie d'ancres naturelle et performante"
+    ]
+  },
+  {
+    title: "Google Ads & SEA",
+    description: "Résultats immédiats, ROI maximisé. Nous construisons et optimisons vos campagnes publicitaires pour capter du trafic qualifié dès le premier jour.",
+    services: [
+      "Campagnes Search & Shopping",
+      "Optimisation des enchères et du Quality Score",
+      "Remarketing & audiences similaires",
+      "Tracking avancé et attribution"
+    ]
+  }
+];
+---
+
+<section id="expertises" class="relative bg-black">
+  <!-- Top: Icon grid -->
+  <div class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-black via-accent-warm/5 to-black"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(25_100%_50%/0.06)_0%,_transparent_70%)]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+      <div class="max-w-2xl mb-16">
+        <div class="inline-flex items-center rounded-full border border-primary/30 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-6">
+          Écosystème SEO & SEA
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-medium tracking-tight mb-6">
+          Optimisation Globale<br />
+          <span class="text-primary/60">Chaque Détail Compte</span>
+        </h2>
+        <p class="text-lg text-primary/70 leading-relaxed">
+          Pour dominer les résultats de recherche, une approche holistique est indispensable. Nous alignons la technique, le contenu, l'autorité et la publicité pour créer une synergie de croissance inarrêtable.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom: Accordion expertises -->
+  <div class="max-w-7xl mx-auto px-7 md:px-12 lg:px-20 pb-24">
+    <div class="flex flex-col">
+      {expertiseLinks.map((link, i) => (
+        <div class="border-b border-primary/10 expertise-accordion" data-index={i}>
+          <button 
+            class="expertise-toggle w-full group flex items-center justify-between py-8 md:py-12 hover:opacity-70 transition-opacity text-left focus:outline-none"
+            aria-expanded="false"
+          >
+            <h3 class="font-display text-4xl md:text-5xl lg:text-[70px] xl:text-[90px] font-medium tracking-tight leading-none">
+              {link.title}
+            </h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron-icon text-primary/30 group-hover:text-primary transition-all duration-500 flex-shrink-0 ml-4 md:w-16 md:h-16"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          
+          <div class="expertise-content overflow-hidden" style="max-height: 0; opacity: 0; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;">
+            <div class="pb-12 pt-2 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
+              <div class="lg:col-span-1">
+                <p class="text-xl text-primary/70 leading-relaxed">
+                  {link.description}
+                </p>
+              </div>
+              <div class="lg:col-span-2">
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                  {link.services.map((service) => (
+                    <li class="flex items-start gap-4">
+                      <div class="mt-2 w-2 h-2 rounded-full bg-accent-warm flex-shrink-0" style="box-shadow: 0 0 8px hsl(25 100% 50%)"></div>
+                      <span class="text-lg font-medium text-primary/90">{service}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.expertise-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const accordion = btn.closest('.expertise-accordion');
+      const content = accordion?.querySelector('.expertise-content') as HTMLElement;
+      const chevron = btn.querySelector('.chevron-icon') as HTMLElement;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      
+      // Close all others
+      document.querySelectorAll('.expertise-toggle').forEach(otherBtn => {
+        if (otherBtn !== btn) {
+          otherBtn.setAttribute('aria-expanded', 'false');
+          const otherContent = otherBtn.closest('.expertise-accordion')?.querySelector('.expertise-content') as HTMLElement;
+          const otherChevron = otherBtn.querySelector('.chevron-icon') as HTMLElement;
+          if (otherContent) { otherContent.style.maxHeight = '0'; otherContent.style.opacity = '0'; }
+          if (otherChevron) otherChevron.style.transform = '';
+        }
+      });
+      
+      if (isOpen) {
+        btn.setAttribute('aria-expanded', 'false');
+        if (content) { content.style.maxHeight = '0'; content.style.opacity = '0'; }
+        if (chevron) chevron.style.transform = '';
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        if (content) { content.style.maxHeight = content.scrollHeight + 'px'; content.style.opacity = '1'; }
+        if (chevron) chevron.style.transform = 'rotate(90deg)';
+      }
+    });
+  });
+</script>

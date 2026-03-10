@@ -1,0 +1,120 @@
+---
+const navLinks = [
+  { label: 'Expertises', href: '/#expertises' },
+  { label: 'Résultats', href: '/#resultats' },
+  { label: 'À Propos', href: '/#a-propos' },
+  { label: 'Contact', href: '/#contact' },
+];
+---
+
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 py-6 md:px-8">
+  <div id="navbar-inner" class="max-w-7xl mx-auto flex items-center justify-between rounded-full px-6 py-3 transition-all duration-300 bg-transparent border border-transparent">
+    
+    <a href="/" class="flex items-center gap-1">
+      <span class="font-display font-bold text-xl tracking-tight text-primary">
+        Save Your Web<span class="text-accent-warm">.</span>
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a href={link.href} class="text-sm font-medium text-primary/80 hover:text-primary transition-colors relative group">
+          {link.label}
+          <span class="absolute -inset-x-3 -inset-y-2 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity scale-95 group-hover:scale-100 duration-200 -z-10"></span>
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden md:block">
+      <a href="/#contact" id="nav-cta" class="flex items-center gap-2 rounded-full pl-5 pr-2 py-2 text-sm font-medium transition-colors duration-300 bg-black text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground">
+        Audit Gratuit
+        <span id="nav-cta-icon" class="w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 bg-primary text-primary-foreground">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <button id="mobile-menu-btn" class="md:hidden text-primary" aria-label="Ouvrir le menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl p-6 flex-col hidden">
+  <div class="flex justify-between items-center mb-12">
+    <span class="font-display font-bold text-xl tracking-tight text-primary">
+      Save Your Web<span class="text-accent-warm">.</span>
+    </span>
+    <button id="mobile-menu-close" class="text-primary p-2 -mr-2" aria-label="Fermer le menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-2 text-2xl font-display">
+    {navLinks.map((link) => (
+      <a href={link.href} class="mobile-nav-link text-primary/80 hover:text-primary transition-colors py-4 px-2 -mx-2 rounded-xl hover:bg-white/5">
+        {link.label}
+      </a>
+    ))}
+  </nav>
+  <div class="mt-auto pb-8">
+    <a href="/#contact" class="mobile-nav-link w-full flex items-center justify-between rounded-full pl-6 pr-2 py-2 text-lg font-medium bg-primary text-primary-foreground">
+      Audit Gratuit
+      <span class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-foreground text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </span>
+    </a>
+  </div>
+</div>
+
+<script>
+  // Scroll effect
+  const navbar = document.getElementById('navbar');
+  const navbarInner = document.getElementById('navbar-inner');
+  const navCta = document.getElementById('nav-cta');
+  const navCtaIcon = document.getElementById('nav-cta-icon');
+  
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 50;
+    if (navbar) navbar.style.paddingTop = scrolled ? '1rem' : '1.5rem';
+    if (navbar) navbar.style.paddingBottom = scrolled ? '1rem' : '1.5rem';
+    if (navbarInner) {
+      navbarInner.classList.toggle('bg-black/80', scrolled);
+      navbarInner.classList.toggle('backdrop-blur-xl', scrolled);
+      navbarInner.classList.toggle('border-primary/10', scrolled);
+      navbarInner.classList.toggle('bg-transparent', !scrolled);
+      navbarInner.classList.toggle('border-transparent', !scrolled);
+    }
+    if (navCta && scrolled) {
+      navCta.classList.add('bg-primary', 'text-primary-foreground');
+      navCta.classList.remove('bg-black', 'text-primary', 'border-primary/20');
+    } else if (navCta) {
+      navCta.classList.remove('bg-primary', 'text-primary-foreground');
+      navCta.classList.add('bg-black', 'text-primary', 'border-primary/20');
+    }
+    if (navCtaIcon && scrolled) {
+      navCtaIcon.classList.add('bg-primary-foreground', 'text-primary');
+      navCtaIcon.classList.remove('bg-primary', 'text-primary-foreground');
+    } else if (navCtaIcon) {
+      navCtaIcon.classList.remove('bg-primary-foreground', 'text-primary');
+      navCtaIcon.classList.add('bg-primary', 'text-primary-foreground');
+    }
+  });
+
+  // Mobile menu
+  const mobileMenu = document.getElementById('mobile-menu');
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    mobileMenu?.classList.remove('hidden');
+    mobileMenu?.classList.add('flex');
+  });
+  document.getElementById('mobile-menu-close')?.addEventListener('click', () => {
+    mobileMenu?.classList.add('hidden');
+    mobileMenu?.classList.remove('flex');
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      mobileMenu?.classList.remove('flex');
+    });
+  });
+</script>

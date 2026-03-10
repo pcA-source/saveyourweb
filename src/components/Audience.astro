@@ -1,0 +1,87 @@
+---
+const audiences = [
+  {
+    icon: "shopping-cart",
+    title: "E-commerce",
+    description: "Multipliez vos ventes organiques et payantes. Optimisation du maillage interne, campagnes Shopping, et stratégies de contenu transactionnel.",
+    stats: "Croissance moyenne constatée : +180%*"
+  },
+  {
+    icon: "briefcase",
+    title: "B2B & Lead Gen",
+    description: "Générez des leads qualifiés en continu. Positionnement SEO sur des requêtes de niche + campagnes Ads ciblées à forte valeur ajoutée.",
+    stats: "Réduction constatée du coût par lead*"
+  },
+  {
+    icon: "rocket",
+    title: "Startups & SaaS",
+    description: "Accélérez votre croissance. Stratégies SEO + SEA pour disrupter les acteurs historiques et dominer votre marché rapidement.",
+    stats: "Croissance accélérée dès les premiers mois*"
+  }
+];
+
+const technologies = [
+  "Shopify", "WordPress", "Webflow", "React", "Next.js", "Magento", "PrestaShop", "Sur-mesure"
+];
+---
+
+<section class="py-24 lg:py-32 bg-black relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-warm/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-7 md:px-12 lg:px-20">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="h-px w-6 bg-accent-warm"></div>
+      <span class="text-sm font-medium tracking-wide uppercase text-accent-warm">Nos Clients</span>
+    </div>
+
+    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-16 max-w-4xl">
+      Pour qui travaillons-nous<span class="text-accent-warm"> ?</span><br />
+      <span class="text-primary/50">PME ambitieuses qui veulent grandir</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      {audiences.map(({ title, description, stats }) => (
+        <div class="rounded-[2rem] border border-primary/10 bg-primary/5 p-8 flex flex-col hover:bg-primary/10 transition-colors group relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-accent-warm/5 rounded-full blur-[40px] group-hover:bg-accent-warm/10 transition-colors"></div>
+          
+          <h3 class="font-display text-2xl font-medium mb-4">{title}</h3>
+          <p class="text-primary/60 leading-relaxed mb-8 flex-grow">
+            {description}
+          </p>
+          
+          <div class="pt-6 border-t border-primary/10 mt-auto">
+            <span class="text-sm font-medium text-accent-warm">{stats}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Technology bar -->
+    <div class="rounded-[2rem] border border-primary/10 bg-primary/5 p-8 md:p-12 relative overflow-hidden">
+      <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
+        <div class="flex-shrink-0 bg-black/50 p-4 rounded-2xl border border-primary/10">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="hsl(25 100% 50%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+        </div>
+        
+        <div>
+          <h3 class="font-display text-2xl font-medium mb-3">Agnostiques technologiquement, experts techniquement.</h3>
+          <p class="text-primary/70 text-lg leading-relaxed mb-6">
+            Quelle que soit votre technologie, nos experts s'adaptent à votre stack pour implémenter les recommandations les plus complexes.
+          </p>
+          
+          <div class="flex flex-wrap gap-3">
+            {technologies.map((tech) => (
+              <span class="px-4 py-2 rounded-full border border-primary/10 bg-black/50 text-sm font-medium text-primary/80">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-6 text-xs text-primary/30 italic">
+      * Résultats moyens constatés. Les performances varient selon le secteur et l'état initial du site.
+    </p>
+  </div>
+</section>
