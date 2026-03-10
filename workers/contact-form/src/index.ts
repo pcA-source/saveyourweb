@@ -179,6 +179,24 @@ export default {
             });
             const qData = await qRes.json() as any;
             qontoQuote = qData.quote || null;
+
+            // Send quote via email to client
+            if (qontoQuote?.id) {
+              const recipientEmail = body.client_info?.email || qontoQuote.contact_email;
+              if (recipientEmail) {
+                await fetch(`${qontoBase}/quotes/${qontoQuote.id}/send`, {
+                  method: 'POST',
+                  headers: {
+                    'Authorization': qontoAuth,
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    to: recipientEmail,
+                    copy_to_self: true,
+                  }),
+                }).catch(() => {});
+              }
+            }
           } catch (e) {
             // Qonto failed, continue with Discord notification
           }
