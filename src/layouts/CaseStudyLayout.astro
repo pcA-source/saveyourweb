@@ -57,7 +57,7 @@ const {
       <div class="animate-fade-in-up">
         <div class="flex items-center gap-5 mb-8">
           {logo ? (
-            <img src={logo} alt={clientName} class="w-16 h-16 rounded-2xl object-contain bg-white/10 p-2" />
+            <img src={logo} alt={clientName} width="64" height="64" loading="lazy" decoding="async" class="w-16 h-16 rounded-2xl object-contain bg-white/10 p-2" />
           ) : (
             <div class="w-16 h-16 rounded-2xl bg-accent-warm/15 border border-accent-warm/30 flex items-center justify-center font-display font-bold text-accent-warm text-2xl">{initials}</div>
           )}

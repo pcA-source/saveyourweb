@@ -73,6 +73,21 @@ const faqs = [
   description="Expert Google Ads à Paris. ROAS 35x pour Montale, -71% coût par conversion. Search, Shopping, PMax, Display. Lancez vos campagnes →"
 >
   <Navbar />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
+
   <main>
     <!-- Hero -->
     <section class="relative min-h-[70vh] flex items-center pt-32 pb-20 overflow-hidden">

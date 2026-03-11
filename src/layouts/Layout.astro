@@ -16,6 +16,45 @@ const {
 } = Astro.props;
 
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
+
+// BreadcrumbList schema
+const pathSegments = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+const breadcrumbLabelMap: Record<string, string> = {
+  'services': 'Services',
+  'seo': 'SEO',
+  'sea': 'SEA',
+  'etudes-de-cas': 'Études de cas',
+  'blog': 'Blog',
+  'a-propos': 'À propos',
+  'contact': 'Contact',
+  'tarifs': 'Tarifs',
+  'ressources': 'Ressources',
+  'mentions-legales': 'Mentions légales',
+  'politique-de-confidentialite': 'Confidentialité',
+};
+
+let breadcrumbSchema = '';
+if (pathSegments.length > 0) {
+  const items = [{ name: 'Accueil', url: 'https://saveyourweb.fr/' }];
+  let accum = '';
+  for (const seg of pathSegments) {
+    accum += '/' + seg;
+    items.push({
+      name: breadcrumbLabelMap[seg] || seg.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+      url: 'https://saveyourweb.fr' + accum + '/'
+    });
+  }
+  breadcrumbSchema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  });
+}
 ---
 
 <!doctype html>
@@ -58,7 +97,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
     <script src="https://assets.calendly.com/assets/external/widget.js" async is:inline></script>
     
-    <!-- Schema.org -->
+    <!-- Schema.org — LocalBusiness -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "ProfessionalService"],
@@ -72,13 +111,45 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
       },
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "17 chemin des Vallières",
+        "addressLocality": "Ville-d'Avray",
+        "postalCode": "92410",
         "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.8256,
+        "longitude": 2.1897
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@saveyourweb.fr",
+        "contactType": "customer service",
+        "availableLanguage": ["French", "English"]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "12"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
       },
       "areaServed": "FR",
       "serviceType": ["SEO", "SEA", "Référencement naturel", "Google Ads", "Meta Ads"],
       "priceRange": "€€€",
       "sameAs": []
     })} />
+
+    <!-- Schema.org — BreadcrumbList -->
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={breadcrumbSchema} />
+    )}
   </head>
   <body class="min-h-screen bg-black text-primary font-sans antialiased">
     <script is:inline>

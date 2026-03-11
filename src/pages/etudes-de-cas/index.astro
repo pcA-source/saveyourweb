@@ -120,7 +120,7 @@ const stats = [
             <div class="flex items-center justify-between mb-6">
               <div class="flex items-center gap-3">
                 {c.logo ? (
-                  <img src={c.logo} alt={c.name} class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
+                  <img src={c.logo} alt={c.name} width="40" height="40" loading="lazy" decoding="async" class="w-10 h-10 rounded-lg object-contain bg-white/10 p-1" />
                 ) : (
                   <div class="w-10 h-10 rounded-lg bg-accent-warm/15 border border-accent-warm/30 flex items-center justify-center font-display font-bold text-accent-warm text-sm">{c.initials}</div>
                 )}

@@ -73,6 +73,21 @@ const faqs = [
   description="Expert SEO à Paris. +40% de trafic pour NRJ, Edenred, IZAC. Audit technique, optimisation on-page, netlinking. Votre audit SEO gratuit →"
 >
   <Navbar />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
+
   <main>
     <!-- Hero -->
     <section class="relative min-h-[70vh] flex items-center pt-32 pb-20 overflow-hidden">
