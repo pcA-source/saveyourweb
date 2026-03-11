@@ -12,10 +12,30 @@ interface Env {
   RESEND_API_KEY?: string;
   QONTO_ORG_SLUG: string;
   QONTO_SECRET_KEY: string;
+  GOOGLE_APPS_SCRIPT_URL: string;
   SMTP_HOST: string;
   SMTP_PORT: string;
   SMTP_USER: string;
   SMTP_PASS: string;
+}
+
+// Append a row to Google Sheets via Apps Script webhook
+async function appendToSheet(env: Env, row: string[]): Promise<void> {
+  if (!env.GOOGLE_APPS_SCRIPT_URL) return;
+  try {
+    await fetch(env.GOOGLE_APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        date: row[0],
+        type: row[1],
+        name: row[2],
+        email: row[3],
+        website: row[4],
+        message: row[5],
+      }),
+    });
+  } catch {}
 }
 
 interface FormData {
@@ -297,6 +317,17 @@ export default {
           body: JSON.stringify(discordPayload),
         }).catch(() => {});
       }
+
+      // Log to Google Sheet
+      const sheetType = body.type === 'lead_magnet' ? 'lead_magnet' : 'contact';
+      await appendToSheet(env, [
+        new Date().toISOString(),
+        sheetType,
+        name,
+        email,
+        website,
+        message,
+      ]);
 
       // Send email via Resend if API key is set
       if (env.RESEND_API_KEY) {

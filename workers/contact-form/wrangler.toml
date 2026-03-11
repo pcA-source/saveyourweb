@@ -9,3 +9,4 @@ DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1480926931045060762/muTu
 DISCORD_DEVIS_WEBHOOK_URL = "https://discord.com/api/webhooks/1480958629589942372/8RnbG_hIHpNFPwIikO8iMXXWJSvnRsBeY4-HWtbVjB9nIXa-QJ-PcVzarzVHDFA5ZNog"
 QONTO_ORG_SLUG = "save-your-web-1990"
 QONTO_SECRET_KEY = "8b018c02575b151a7f5121bdf7de451b"
+GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5OL7ifVlQ2-z2pyJO2tGjtCd10ZMlVmNp6Pc2SS7r_nSnY-Ee3t5QsN0lqgV_CyLMTw/exec"
