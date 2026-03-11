@@ -97,7 +97,15 @@ export default {
     }
 
     try {
-      const body = await request.json() as any;
+      // Parse body: support both JSON and FormData
+      let body: any;
+      const contentType = request.headers.get('Content-Type') || '';
+      if (contentType.includes('application/json')) {
+        body = await request.json();
+      } else {
+        const formData = await request.formData();
+        body = Object.fromEntries(formData.entries());
+      }
 
       // Handle devis validation
       if (body.type === 'devis_validation') {
