@@ -31,7 +31,7 @@ const currentYear = new Date().getFullYear();
           <li><a href="/etudes-de-cas/" class="text-sm text-primary/50 hover:text-primary transition-colors">Études de cas</a></li>
           <li><a href="/blog/" class="text-sm text-primary/50 hover:text-primary transition-colors">Blog</a></li>
           <li><a href="/a-propos/" class="text-sm text-primary/50 hover:text-primary transition-colors">À Propos</a></li>
-          <li><a href="/#contact" class="text-sm text-primary/50 hover:text-primary transition-colors">Contact</a></li>
+          <li><a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/rdv-seo-save-your-web/30min'});return false;" class="text-sm text-primary/50 hover:text-primary transition-colors">Contact</a></li>
         </ul>
       </div>
 
@@ -41,6 +41,7 @@ const currentYear = new Date().getFullYear();
         <ul class="space-y-3">
           <li><a href="/mentions-legales" class="text-sm text-primary/50 hover:text-primary transition-colors">Mentions légales</a></li>
           <li><a href="/politique-de-confidentialite" class="text-sm text-primary/50 hover:text-primary transition-colors">Confidentialité</a></li>
+          <li><a href="#" onclick="window.resetCookieConsent();return false;" class="text-sm text-primary/50 hover:text-primary transition-colors">Gérer les cookies</a></li>
         </ul>
       </div>
     </div>

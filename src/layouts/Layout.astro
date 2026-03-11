@@ -6,6 +6,8 @@ interface Props {
   canonical?: string;
 }
 
+import CookieBanner from '../components/CookieBanner.astro';
+
 const { 
   title, 
   description = "Save Your Web — Agence SEO & SEA à Paris. Référencement naturel et Google Ads pour PME, e-commerce et startups. Dominez Google avec une stratégie sur-mesure.",
@@ -52,14 +54,9 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/SpaceGrotesk-Latin.woff2" as="font" type="font/woff2" crossorigin />
     
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2C64SY9XCK" is:inline></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-2C64SY9XCK');
-    </script>
+    <!-- Calendly widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+    <script src="https://assets.calendly.com/assets/external/widget.js" async is:inline></script>
     
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -94,6 +91,8 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
     <style is:global>
       @import '../styles/global.css';
     </style>
+
+    <CookieBanner />
 
     <!-- Global scroll reveal & counter animations -->
     <script is:inline>
