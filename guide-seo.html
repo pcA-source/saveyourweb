@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 erreurs SEO qui tuent votre trafic</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12pt;
+    line-height: 1.7;
+    color: #1A1A1A;
+    background: #FFFFFF;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 0;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    background: #0A0A0A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 297mm;
+    position: relative;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(255, 106, 0, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(255, 106, 0, 0.05) 0%, transparent 50%);
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 1;
+    padding: 60px;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    border: 2px solid #FF6A00;
+    color: #FF6A00;
+    font-size: 11pt;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 28px;
+    margin-bottom: 50px;
+    border-radius: 4px;
+  }
+
+  .cover h1 {
+    color: #FFFFFF;
+    font-size: 38pt;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .cover h1 span {
+    color: #FF6A00;
+  }
+
+  .cover .subtitle {
+    color: #FF6A00;
+    font-size: 20pt;
+    font-weight: 600;
+    margin-bottom: 50px;
+  }
+
+  .cover .edition {
+    color: #888888;
+    font-size: 12pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 80px;
+  }
+
+  .cover-logo {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+  }
+
+  .cover-logo .dot {
+    color: #FF6A00;
+  }
+
+  .cover-url {
+    color: #666666;
+    font-size: 11pt;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  .cover-line {
+    width: 60px;
+    height: 3px;
+    background: #FF6A00;
+    margin: 30px auto;
+  }
+
+  /* ===== SOMMAIRE ===== */
+  .toc {
+    padding: 60px 65px;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toc-header {
+    margin-bottom: 45px;
+  }
+
+  .toc-header h2 {
+    font-size: 28pt;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+  }
+
+  .toc-header .line {
+    width: 60px;
+    height: 4px;
+    background: #FF6A00;
+  }
+
+  .toc-list {
+    list-style: none;
+    flex: 1;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #EEEEEE;
+  }
+
+  .toc-num {
+    font-size: 20pt;
+    font-weight: 800;
+    color: #FF6A00;
+    width: 55px;
+    flex-shrink: 0;
+  }
+
+  .toc-title {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #1A1A1A;
+    flex: 1;
+  }
+
+  .toc-dots {
+    flex: 1;
+    border-bottom: 2px dotted #DDDDDD;
+    margin: 0 12px;
+    min-width: 30px;
+  }
+
+  /* ===== INTRO ===== */
+  .intro {
+    padding: 60px 65px;
+    height: 297mm;
+  }
+
+  .intro h2 {
+    font-size: 28pt;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+  }
+
+  .intro .line {
+    width: 60px;
+    height: 4px;
+    background: #FF6A00;
+    margin-bottom: 40px;
+  }
+
+  .intro p {
+    font-size: 12pt;
+    line-height: 1.8;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+
+  .intro .signature {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #F0F0F0;
+  }
+
+  .intro .signature .name {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #1A1A1A;
+  }
+
+  .intro .signature .role {
+    font-size: 11pt;
+    color: #FF6A00;
+    font-weight: 600;
+  }
+
+  .intro .signature .company {
+    font-size: 11pt;
+    color: #888888;
+    margin-top: 4px;
+  }
+
+  /* ===== ERROR PAGES ===== */
+  .error-page {
+    padding: 55px 65px 40px;
+    height: 297mm;
+    position: relative;
+  }
+
+  .error-page.alt-bg {
+    background: #F8F8F8;
+  }
+
+  .error-header {
+    margin-bottom: 30px;
+  }
+
+  .error-number {
+    font-size: 56pt;
+    font-weight: 900;
+    color: #FF6A00;
+    line-height: 1;
+    opacity: 0.9;
+  }
+
+  .error-title {
+    font-size: 22pt;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-top: 5px;
+    line-height: 1.25;
+  }
+
+  .error-separator {
+    width: 60px;
+    height: 4px;
+    background: #FF6A00;
+    margin: 20px 0 30px;
+  }
+
+  .section-label {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label .emoji {
+    font-size: 16pt;
+  }
+
+  .problem-text {
+    font-size: 11.5pt;
+    line-height: 1.75;
+    color: #333333;
+    margin-bottom: 30px;
+  }
+
+  .problem-text p {
+    margin-bottom: 12px;
+  }
+
+  .impact-box {
+    background: #F0F7FF;
+    border-left: 4px solid #3B82F6;
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+  }
+
+  .impact-box .impact-label {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1E40AF;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .impact-box p {
+    font-size: 11pt;
+    line-height: 1.7;
+    color: #334155;
+  }
+
+  /* ===== ERROR PAGE 2 (corrections) ===== */
+  .steps-section {
+    margin-bottom: 28px;
+  }
+
+  .steps-list {
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .steps-list li {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    font-size: 11.5pt;
+    line-height: 1.6;
+    color: #333333;
+  }
+
+  .steps-list li::before {
+    content: counter(step);
+    background: #FF6A00;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 10pt;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 14px;
+    margin-top: 2px;
+  }
+
+  .tool-box {
+    background: #F8F8F8;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 22px;
+    border: 1px solid #E8E8E8;
+  }
+
+  .tool-box .tool-label {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tool-box p {
+    font-size: 11pt;
+    line-height: 1.65;
+    color: #555555;
+  }
+
+  .tip-box {
+    background: #FFF5EB;
+    border-left: 4px solid #FF6A00;
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .tip-box .tip-label {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #C2410C;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tip-box p {
+    font-size: 11pt;
+    line-height: 1.7;
+    color: #7C2D12;
+  }
+
+  /* ===== CHECKLIST ===== */
+  .checklist {
+    padding: 60px 65px;
+    height: 297mm;
+  }
+
+  .checklist h2 {
+    font-size: 28pt;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+  }
+
+  .checklist .line {
+    width: 60px;
+    height: 4px;
+    background: #FF6A00;
+    margin-bottom: 15px;
+  }
+
+  .checklist .checklist-subtitle {
+    font-size: 12pt;
+    color: #555555;
+    margin-bottom: 35px;
+    line-height: 1.6;
+  }
+
+  .checklist-list {
+    list-style: none;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid #EEEEEE;
+  }
+
+  .checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #FF6A00;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-right: 16px;
+    margin-top: 2px;
+  }
+
+  .checklist-item .check-num {
+    font-size: 11pt;
+    font-weight: 800;
+    color: #FF6A00;
+    margin-right: 10px;
+    flex-shrink: 0;
+    min-width: 24px;
+  }
+
+  .checklist-item .check-text {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.5;
+  }
+
+  .checklist-item .check-desc {
+    font-size: 10pt;
+    color: #777777;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ===== ABOUT / CTA PAGE ===== */
+  .about-page {
+    padding: 60px 65px;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #FAFAFA;
+  }
+
+  .about-logo {
+    font-size: 30pt;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+  }
+
+  .about-logo .dot {
+    color: #FF6A00;
+  }
+
+  .about-tagline {
+    font-size: 12pt;
+    color: #888888;
+    margin-bottom: 45px;
+    letter-spacing: 1px;
+  }
+
+  .about-line {
+    width: 60px;
+    height: 3px;
+    background: #FF6A00;
+    margin: 0 auto 40px;
+  }
+
+  .about-text {
+    font-size: 12pt;
+    line-height: 1.8;
+    color: #555555;
+    max-width: 440px;
+    margin-bottom: 50px;
+  }
+
+  .about-text p {
+    margin-bottom: 16px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #FF6A00;
+    color: #FFFFFF;
+    font-size: 14pt;
+    font-weight: 700;
+    padding: 18px 44px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .cta-url {
+    font-size: 11pt;
+    color: #888888;
+  }
+
+  .about-footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 2px solid #E8E8E8;
+    font-size: 10pt;
+    color: #AAAAAA;
+  }
+
+  /* Page footer */
+  .page-footer {
+    position: absolute;
+    bottom: 25px;
+    left: 65px;
+    right: 65px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8.5pt;
+    color: #BBBBBB;
+  }
+
+  .page-footer .footer-logo {
+    font-weight: 700;
+    color: #CCCCCC;
+  }
+
+  .page-footer .footer-logo .dot {
+    color: #FF6A00;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="page cover">
+  <div class="cover-content">
+    <div class="cover-badge">Guide Pratique SEO</div>
+    <h1>10 erreurs SEO<br>qui <span>tuent</span><br>votre trafic</h1>
+    <div class="subtitle">(et comment les corriger)</div>
+    <div class="edition">Guide pratique — Édition 2026</div>
+    <div class="cover-line"></div>
+    <div class="cover-logo">Save Your Web<span class="dot">.</span></div>
+    <div class="cover-url">saveyourweb.fr</div>
+  </div>
+</div>
+
+<!-- ==================== SOMMAIRE ==================== -->
+<div class="page toc">
+  <div class="toc-header">
+    <h2>Sommaire</h2>
+    <div class="line"></div>
+  </div>
+  <ul class="toc-list">
+    <li class="toc-item">
+      <span class="toc-num">01</span>
+      <span class="toc-title">Ignorer l'intention de recherche</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">02</span>
+      <span class="toc-title">Négliger le maillage interne</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">03</span>
+      <span class="toc-title">Oublier les balises title et meta descriptions</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">04</span>
+      <span class="toc-title">Ne pas optimiser pour mobile</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">05</span>
+      <span class="toc-title">Ignorer la vitesse de chargement</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">06</span>
+      <span class="toc-title">Dupliquer du contenu</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">07</span>
+      <span class="toc-title">Négliger les données structurées</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">08</span>
+      <span class="toc-title">Ne pas suivre ses positions</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">09</span>
+      <span class="toc-title">Acheter des backlinks toxiques</span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">10</span>
+      <span class="toc-title">Ne pas avoir de stratégie de contenu</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ==================== INTRODUCTION ==================== -->
+<div class="page intro">
+  <h2>Introduction</h2>
+  <div class="line"></div>
+  <p>Vous faites du SEO depuis des mois, peut-être des années. Vous publiez du contenu, vous optimisez vos pages, vous construisez des liens… mais les résultats ne sont pas à la hauteur de vos efforts.</p>
+  <p>Rassurez-vous : vous n'êtes pas seul. En 8 ans d'expérience en SEO — d'abord chez l'annonceur, puis en agence, et maintenant en freelance — j'ai audité des centaines de sites. Et je retrouve systématiquement les mêmes erreurs.</p>
+  <p>Ce guide compile les <strong>10 erreurs les plus fréquentes</strong> que je rencontre chez mes clients, avec pour chacune :</p>
+  <p>
+    <strong>🎯 Le problème concret</strong> — ce qui ne va pas et pourquoi<br>
+    <strong>📊 L'impact chiffré</strong> — des données pour mesurer l'enjeu<br>
+    <strong>✅ Les étapes pour corriger</strong> — un plan d'action clair<br>
+    <strong>🔧 L'outil recommandé</strong> — pour passer à l'action<br>
+    <strong>💡 Un pro tip</strong> — mes astuces terrain
+  </p>
+  <p>Pas de jargon inutile, pas de théorie creuse. Que du concret, applicable immédiatement.</p>
+  <p>Chaque erreur corrigée, c'est du trafic en plus. Chaque semaine de retard, c'est du trafic perdu au profit de vos concurrents.</p>
+  <p><strong>Prêt à passer à l'action ?</strong></p>
+  <div class="signature">
+    <div class="name">Pierre-Charles Relange</div>
+    <div class="role">Consultant SEO — Fondateur</div>
+    <div class="company">Save Your Web · saveyourweb.fr</div>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 01 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">01</div>
+    <div class="error-title">Ignorer l'intention de recherche</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>C'est l'erreur n°1 que je vois chez mes clients. Vous ciblez un mot-clé, vous créez du contenu... mais Google ne vous positionne pas. Pourquoi ? Parce que votre page ne répond pas à ce que l'internaute cherche vraiment.</p>
+    <p>L'intention de recherche, c'est le « pourquoi » derrière une requête. Quelqu'un qui tape « meilleur CRM » veut un comparatif, pas une page produit. Quelqu'un qui tape « acheter iPhone 16 » veut une page e-commerce, pas un article de blog.</p>
+    <p>Google l'a compris depuis BERT (2019) et le confirme avec chaque mise à jour. Si votre contenu ne correspond pas à l'intent, vous ne rankerez jamais, peu importe la qualité de votre SEO technique.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Selon une étude Semrush (2024), 72% des pages qui n'atteignent pas le top 10 ont un problème d'adéquation avec l'intention de recherche. Une étude Backlinko montre que les pages en position 1 ont un CTR moyen de 27.6% — mais seulement si elles correspondent à l'intent.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 01 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">01</div>
+    <div class="error-title" style="font-size: 16pt;">Ignorer l'intention de recherche — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Tapez votre mot-clé cible dans Google et analysez les 5 premiers résultats</li>
+      <li>Identifiez le type de contenu dominant (article, comparatif, page produit, vidéo)</li>
+      <li>Adaptez votre format : si les top résultats sont des guides, faites un guide</li>
+      <li>Vérifiez les People Also Ask pour comprendre les questions associées</li>
+      <li>Créez du contenu qui répond MIEUX que les pages existantes (10x content)</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Google Search Console (Performance > Queries) pour identifier les requêtes où vous avez des impressions mais peu de clics — signe d'un mismatch d'intention.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Avant de rédiger, je fais toujours une recherche incognito et je note le format des 5 premiers résultats. Si 4/5 sont des listes, je fais une liste. Si 4/5 sont des guides longs, je fais un guide long. Simple mais redoutablement efficace.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 02 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">02</div>
+    <div class="error-title">Négliger le maillage interne</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Le maillage interne, c'est le système nerveux de votre site. Sans lui, Google ne comprend pas la hiérarchie de vos pages, ne distribue pas le PageRank correctement, et vos pages importantes restent invisibles.</p>
+    <p>Je vois régulièrement des sites avec des pages orphelines (aucun lien interne pointant vers elles), des silos cassés, ou pire : un footer avec 200 liens qui diluent tout le jus SEO.</p>
+    <p>Le maillage interne est le levier le plus sous-estimé du SEO. C'est gratuit, c'est rapide à mettre en place, et les résultats sont souvent visibles en quelques semaines.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Une étude Ahrefs (2023) montre que les pages avec 5+ liens internes reçoivent en moyenne 3.5x plus de trafic organique que les pages avec 0-1 lien interne. Chez un de mes clients (JD2M), la restructuration du maillage interne a généré +22% de trafic en 6 semaines.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 02 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">02</div>
+    <div class="error-title" style="font-size: 16pt;">Négliger le maillage interne — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Auditez vos pages orphelines avec Screaming Frog (Crawl > Orphan Pages)</li>
+      <li>Créez des cocons sémantiques : page pilier + pages satellites liées entre elles</li>
+      <li>Ajoutez 3-5 liens internes contextuels par article (pas juste dans le footer)</li>
+      <li>Utilisez des ancres descriptives (pas « cliquez ici » mais « guide du maillage interne »)</li>
+      <li>Priorisez les liens VERS vos pages money (services, produits, landing pages)</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Screaming Frog (gratuit jusqu'à 500 URLs) pour visualiser la structure de liens internes et identifier les pages orphelines.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Ma règle : chaque nouvel article publié doit contenir au moins 3 liens internes vers des pages existantes, et je mets à jour 2-3 anciens articles pour pointer vers le nouveau. Ça prend 10 minutes et ça change tout.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 03 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">03</div>
+    <div class="error-title">Oublier les balises title et meta descriptions</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>La balise title est le facteur on-page le plus important pour le ranking. La meta description n'est pas un facteur de ranking direct, mais elle influence le CTR — et le CTR influence le ranking.</p>
+    <p>Pourtant, je vois encore des sites avec des titles génériques (« Accueil - Mon Site »), des titles trop longs (tronqués dans les SERP), des meta descriptions vides ou dupliquées sur toutes les pages.</p>
+    <p>C'est du SEO basique, mais 60% des sites que j'audite ont des problèmes de titles.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Selon une étude Moz, une amélioration du title tag peut générer +20% de CTR en moyenne. Backlinko a montré que les titles contenant le mot-clé exact ont un taux de clic supérieur de 35% vs les titles qui ne le contiennent pas. Sur un site à 100K impressions/mois, +5% de CTR = +5000 clics gratuits.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 03 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">03</div>
+    <div class="error-title" style="font-size: 16pt;">Oublier les balises title et meta descriptions — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Gardez vos titles entre 50-60 caractères (affichage complet dans Google)</li>
+      <li>Placez le mot-clé principal au début du title</li>
+      <li>Utilisez des power words : « Guide », « Complet », « 2026 », chiffres, « | » comme séparateur</li>
+      <li>Rédigez des meta descriptions de 120-155 caractères avec un CTA clair</li>
+      <li>Chaque page doit avoir un title et une meta description UNIQUES</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Google Search Console (Performance) pour identifier les pages avec beaucoup d'impressions mais un CTR faible — ce sont vos cibles prioritaires.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Ma formule title qui marche : [Mot-clé principal] : [Bénéfice/Nombre] | [Marque]. Exemple : « Audit SEO Gratuit : +40% de Trafic en 12 Mois | Save Your Web ». Direct, clair, différenciant.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 04 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">04</div>
+    <div class="error-title">Ne pas optimiser pour mobile</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Depuis mars 2021, Google utilise exclusivement le mobile-first indexing. Cela signifie que Google crawle et indexe la version mobile de votre site, pas la version desktop.</p>
+    <p>Si votre site n'est pas responsive, si les boutons sont trop petits, si le texte est illisible sans zoomer, ou si des contenus sont masqués sur mobile — Google ne les voit tout simplement pas.</p>
+    <p>En 2026, 65% du trafic web mondial vient du mobile. Ne pas optimiser pour mobile, c'est ignorer les 2/3 de votre audience.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Google rapporte que 53% des visiteurs mobiles quittent un site qui met plus de 3 secondes à charger. Selon Statista (2025), le trafic mobile représente 65% du trafic web mondial. Les sites non mobile-friendly perdent en moyenne 50% de leur trafic organique après une core update.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 04 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">04</div>
+    <div class="error-title" style="font-size: 16pt;">Ne pas optimiser pour mobile — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Testez votre site avec le Mobile-Friendly Test de Google</li>
+      <li>Vérifiez que tous les contenus sont identiques sur mobile et desktop</li>
+      <li>Cibles touch minimales de 48x48px pour les boutons (recommandation Google)</li>
+      <li>Taille de police minimum 16px pour le corps de texte</li>
+      <li>Testez sur de vrais appareils, pas seulement le mode responsive du navigateur</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Google PageSpeed Insights (onglet Mobile) pour un audit complet de l'expérience mobile + Core Web Vitals.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Je commence TOUJOURS par le mobile quand je fais un audit. Si ça marche bien sur un écran de 375px, ça marchera partout. L'inverse n'est pas vrai.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 05 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">05</div>
+    <div class="error-title">Ignorer la vitesse de chargement</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Les Core Web Vitals (LCP, INP, CLS) sont des facteurs de ranking confirmés depuis 2021. Google mesure l'expérience utilisateur réelle de votre site via les données Chrome User Experience (CrUX).</p>
+    <p>LCP (Largest Contentful Paint) : le plus gros élément visible doit s'afficher en moins de 2.5s. INP (Interaction to Next Paint) : la réactivité aux clics doit être inférieure à 200ms. CLS (Cumulative Layout Shift) : les éléments ne doivent pas « sauter » pendant le chargement.</p>
+    <p>Un site lent = des visiteurs qui partent = un signal négatif pour Google.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Google a confirmé que les Core Web Vitals sont un facteur de ranking. Vodafone a constaté +8% de ventes en améliorant son LCP de 31%. Amazon estime que chaque 100ms de latence supplémentaire coûte 1% de ventes. Une étude Portent (2023) montre que les sites chargeant en 1s convertissent 3x plus que ceux chargeant en 5s.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 05 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">05</div>
+    <div class="error-title" style="font-size: 16pt;">Ignorer la vitesse de chargement — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Mesurez vos Core Web Vitals avec PageSpeed Insights (données réelles CrUX)</li>
+      <li>Compressez et redimensionnez toutes les images (WebP, 80% qualité max)</li>
+      <li>Ajoutez loading='lazy' sur les images sous la ligne de flottaison</li>
+      <li>Activez la mise en cache navigateur et la compression GZIP/Brotli</li>
+      <li>Retardez le chargement des scripts tiers non essentiels (defer/async)</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Google PageSpeed Insights + Web Vitals Chrome Extension pour un monitoring en temps réel de vos Core Web Vitals.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Les quick wins qui marchent à chaque fois : convertir les images en WebP (-60% de poids), activer le lazy loading, et self-hoster les fonts au lieu de les charger depuis Google Fonts (-200ms facile).</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 06 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">06</div>
+    <div class="error-title">Dupliquer du contenu</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Le contenu dupliqué, c'est quand plusieurs URLs de votre site affichent un contenu identique ou très similaire. Google ne pénalise pas directement le duplicate content, mais il CHOISIT quelle version indexer — et ce n'est pas toujours celle que vous voulez.</p>
+    <p>Les sources courantes : pages avec/sans www, avec/sans trailing slash, pages de pagination, filtres e-commerce (couleur, taille, prix), versions HTTP/HTTPS, paramètres UTM.</p>
+    <p>Le near-duplicate est encore pire : des pages avec 80% de contenu identique et 20% de variation (typique des pages villes en SEO local).</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Selon Raven Tools, 29% des sites audités ont des problèmes de contenu dupliqué. Le duplicate content dilue le PageRank entre les versions, réduit le crawl budget, et peut entraîner la désindexation de vos pages importantes. Sur un site e-commerce avec 10 000 produits et des filtres mal gérés, on peut facilement générer 100 000+ URLs dupliquées qui gaspillent le crawl budget.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 06 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">06</div>
+    <div class="error-title" style="font-size: 16pt;">Dupliquer du contenu — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Implémentez les balises canonical sur toutes les pages (self-referencing canonical)</li>
+      <li>Gérez les filtres e-commerce avec des canonical vers la page catégorie principale</li>
+      <li>Redirigez les versions HTTP, www, et trailing slash vers une seule version</li>
+      <li>Utilisez le robots.txt ou noindex pour les pages de pagination après la page 2</li>
+      <li>Faites du content pruning : supprimez ou fusionnez les pages à faible valeur</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Screaming Frog (onglet Canonicals + Duplicates) pour détecter toutes les formes de duplication sur votre site.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Le content pruning est mon arme secrète. Chez L-Expert-Comptable.com, la suppression de 2000 pages thin content a boosté le trafic global de +15%. Moins de pages = plus de puissance par page.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 07 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">07</div>
+    <div class="error-title">Négliger les données structurées</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Les données structurées (Schema.org) permettent à Google de mieux comprendre votre contenu et d'afficher des rich snippets dans les résultats : étoiles, FAQ, prix, images, breadcrumbs...</p>
+    <p>Les rich snippets augmentent drastiquement le CTR en rendant votre résultat plus visible et plus attractif. Pourtant, seulement 33% des sites utilisent des données structurées.</p>
+    <p>Avec l'arrivée de la Search Generative Experience (SGE) et des AI Overviews, les données structurées deviennent encore plus cruciales pour être cité par les réponses IA de Google.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Selon une étude Milestone Research, les rich results génèrent un CTR 58% supérieur aux résultats classiques. Les FAQ rich snippets peuvent doubler la surface occupée dans les SERP. Search Engine Land rapporte que les pages avec des données structurées reçoivent en moyenne 30% de clics en plus.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 07 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">07</div>
+    <div class="error-title" style="font-size: 16pt;">Négliger les données structurées — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Ajoutez le schema Organization/LocalBusiness sur votre page d'accueil</li>
+      <li>Ajoutez le schema FAQPage sur vos pages qui contiennent des FAQ</li>
+      <li>Ajoutez le schema Product avec prix/avis sur vos pages produits (e-commerce)</li>
+      <li>Ajoutez le schema BreadcrumbList pour afficher le fil d'Ariane dans Google</li>
+      <li>Implémentez en JSON-LD (format recommandé par Google, le plus simple)</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Rich Results Test de Google (search.google.com/test/rich-results) pour valider vos données structurées et prévisualiser les rich snippets.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Le FAQ schema est le plus facile à implémenter et le plus impactant. Sur mes clients, j'ajoute systématiquement 3-5 questions FAQ sur chaque page service. Résultat : +40% de surface SERP en moyenne.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 08 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">08</div>
+    <div class="error-title">Ne pas suivre ses positions</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Vous ne pouvez pas améliorer ce que vous ne mesurez pas. Pourtant, beaucoup d'entreprises font du SEO « au feeling » sans tracker leurs positions, leur trafic organique, ou leurs conversions.</p>
+    <p>Sans suivi, vous ne savez pas si vos efforts portent leurs fruits, quelles pages performent, quelles requêtes vous gagnez ou perdez. Vous volez à l'aveugle.</p>
+    <p>Le SEO est un marathon, pas un sprint. Les résultats se mesurent sur 3-6 mois. Sans tracking, vous risquez d'abandonner trop tôt ou de continuer une stratégie inefficace.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Les entreprises qui suivent leurs KPIs SEO mensuellement ont un trafic organique 2.5x supérieur à celles qui ne le font pas (HubSpot, 2024). Google Search Console est gratuit et vous donne les données exactes de Google : impressions, clics, CTR, position moyenne par requête.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 08 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">08</div>
+    <div class="error-title" style="font-size: 16pt;">Ne pas suivre ses positions — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Configurez Google Search Console et Google Analytics 4 (gratuits)</li>
+      <li>Créez un dashboard avec vos 20-30 mots-clés prioritaires</li>
+      <li>Suivez mensuellement : trafic organique, positions, CTR, conversions</li>
+      <li>Analysez les tendances : quelles pages montent/descendent et pourquoi</li>
+      <li>Comparez vos performances YoY (année sur année) pour neutraliser la saisonnalité</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Google Search Console (gratuit, indispensable) + un outil de suivi de positions comme SE Ranking ou Semrush pour le suivi quotidien de vos mots-clés stratégiques.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Chaque lundi matin, je consulte GSC pour tous mes clients. Je regarde 3 choses : les requêtes en forte hausse (opportunités), les pages en baisse (alerte), et les nouvelles requêtes qui apparaissent (quick wins).</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 09 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">09</div>
+    <div class="error-title">Acheter des backlinks toxiques</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Les backlinks restent un des top 3 facteurs de ranking Google. Mais la tentation d'acheter des liens pas chers sur Fiverr ou des PBN (Private Blog Networks) est une bombe à retardement.</p>
+    <p>Google Penguin (intégré à l'algo depuis 2016) détecte et dévalue les liens artificiels en temps réel. Les conséquences vont de la perte de positions à la pénalité manuelle (désindexation).</p>
+    <p>Le netlinking de qualité prend du temps et coûte plus cher, mais c'est le seul qui dure.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Une étude Ahrefs (2024) montre que 66% des pages sur le web n'ont aucun backlink. Les pages avec des backlinks de qualité (DR 50+) ont 5x plus de chances d'atteindre le top 3. En revanche, un profil de liens toxique peut faire chuter un site de 50+ positions en quelques jours lors d'un Spam Update.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 09 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">09</div>
+    <div class="error-title" style="font-size: 16pt;">Acheter des backlinks toxiques — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Auditez votre profil de liens avec Ahrefs ou Semrush (spam score, diversité des domaines)</li>
+      <li>Désavouez les liens toxiques via Google Search Console (Disavow Tool)</li>
+      <li>Privilégiez le Digital PR : créez du contenu qui mérite d'être cité (stats, études, infographies)</li>
+      <li>Faites du guest posting sur des sites légitimes de votre secteur (pas des fermes à liens)</li>
+      <li>Construisez des relations avec des journalistes et blogueurs (HARO, Connectively)</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Ahrefs (Backlink Checker gratuit : ahrefs.com/backlink-checker) pour analyser la qualité de votre profil de liens et détecter les liens toxiques.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Mon approche : 80% de liens gagnés naturellement (contenu de qualité + PR), 20% de liens construits (guest posts ciblés). Un seul lien depuis Le Monde ou Les Echos vaut plus que 100 liens de PBN.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 10 — Page 1 ==================== -->
+<div class="page error-page">
+  <div class="error-header">
+    <div class="error-number">10</div>
+    <div class="error-title">Ne pas avoir de stratégie de contenu</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">🎯</span> Le problème</div>
+  <div class="problem-text">
+    <p>Publier des articles au hasard, sans plan, sans recherche de mots-clés, sans calendrier éditorial — c'est comme jeter des fléchettes les yeux bandés. Vous toucherez peut-être quelque chose, mais par pur hasard.</p>
+    <p>Une stratégie de contenu SEO, c'est : savoir quoi écrire (mots-clés), pour qui (à quelle étape du funnel), quand (fréquence), et comment (format, longueur, angle).</p>
+    <p>En 2026, avec l'explosion de l'IA générative, le contenu générique ne suffit plus. Google valorise l'E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness). Votre contenu doit démontrer une expertise réelle.</p>
+  </div>
+
+  <div class="impact-box">
+    <div class="impact-label"><span class="emoji">📊</span> L'impact chiffré</div>
+    <p>Les entreprises qui publient 16+ articles/mois génèrent 3.5x plus de trafic que celles qui publient 0-4 (HubSpot). Mais la quantité sans qualité ne sert à rien : une étude Orbit Media (2024) montre que les articles de 1500+ mots génèrent 2x plus de partages et 3x plus de backlinks que les articles courts.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== ERREUR 10 — Page 2 ==================== -->
+<div class="page error-page alt-bg">
+  <div class="error-header">
+    <div class="error-number" style="opacity: 0.2;">10</div>
+    <div class="error-title" style="font-size: 16pt;">Ne pas avoir de stratégie de contenu — Corrections</div>
+  </div>
+  <div class="error-separator"></div>
+
+  <div class="section-label"><span class="emoji">✅</span> Comment corriger</div>
+  <div class="steps-section">
+    <ol class="steps-list">
+      <li>Faites une recherche de mots-clés complète (volume, difficulté, intention) avant de rédiger</li>
+      <li>Organisez vos contenus en topic clusters : 1 page pilier + 5-10 pages satellites</li>
+      <li>Créez un calendrier éditorial réaliste (régularité > quantité)</li>
+      <li>Analysez le content gap : quels sujets vos concurrents couvrent-ils que vous ne couvrez pas ?</li>
+      <li>Mettez à jour vos anciens contenus (content refresh) — souvent plus rentable que créer du neuf</li>
+    </ol>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-label"><span class="emoji">🔧</span> Outil recommandé</div>
+    <p>Semrush Content Gap ou Ahrefs Content Explorer pour identifier les opportunités de contenu inexploitées face à vos concurrents.</p>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label"><span class="emoji">💡</span> Pro tip</div>
+    <p>Mon processus chez mes clients : 1) Keyword research, 2) Prioriser par ROI potentiel (volume x intent commercial), 3) Briefer les rédacteurs avec structure précise, 4) Optimiser après publication via GSC. Et surtout : mettre à jour les articles existants chaque trimestre. C'est là que se cache le vrai ROI.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Save Your Web<span class="dot">.</span></span>
+    <span>saveyourweb.fr</span>
+  </div>
+</div>
+
+<!-- ==================== CHECKLIST ==================== -->
+<div class="page checklist">
+  <h2>✅ Checklist SEO</h2>
+  <div class="line"></div>
+  <p class="checklist-subtitle">Cochez chaque point une fois corrigé sur votre site. Un seul changement peut faire la différence.</p>
+
+  <ul class="checklist-list">
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">01</span>
+        <span class="check-text">Aligner chaque page avec l'intention de recherche</span>
+        <div class="check-desc">Analyser les SERP avant de rédiger, adapter le format au top 5</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">02</span>
+        <span class="check-text">Structurer le maillage interne</span>
+        <div class="check-desc">Éliminer les pages orphelines, créer des cocons sémantiques</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">03</span>
+        <span class="check-text">Optimiser les balises title et meta descriptions</span>
+        <div class="check-desc">50-60 caractères, mot-clé en début, meta unique par page</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">04</span>
+        <span class="check-text">Garantir une expérience mobile parfaite</span>
+        <div class="check-desc">Responsive, touch targets 48px, police 16px minimum</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">05</span>
+        <span class="check-text">Optimiser la vitesse de chargement</span>
+        <div class="check-desc">Core Web Vitals au vert, images WebP, lazy loading</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">06</span>
+        <span class="check-text">Éliminer le contenu dupliqué</span>
+        <div class="check-desc">Canonical, redirections, content pruning</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">07</span>
+        <span class="check-text">Implémenter les données structurées</span>
+        <div class="check-desc">JSON-LD : Organization, FAQ, Product, Breadcrumbs</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">08</span>
+        <span class="check-text">Mettre en place le suivi des positions</span>
+        <div class="check-desc">GSC + GA4 configurés, dashboard mensuel, suivi YoY</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">09</span>
+        <span class="check-text">Nettoyer le profil de backlinks</span>
+        <div class="check-desc">Audit des liens, désaveu des toxiques, Digital PR</div>
+      </div>
+    </li>
+    <li class="checklist-item">
+      <div class="checkbox"></div>
+      <div>
+        <span class="check-num">10</span>
+        <span class="check-text">Définir une stratégie de contenu</span>
+        <div class="check-desc">Keyword research, topic clusters, calendrier éditorial, content refresh</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- ==================== ABOUT / CTA ==================== -->
+<div class="page about-page">
+  <div class="about-logo">Save Your Web<span class="dot">.</span></div>
+  <div class="about-tagline">Consultant SEO · Freelance</div>
+  <div class="about-line"></div>
+
+  <div class="about-text">
+    <p>Je suis <strong>Pierre-Charles Relange</strong>, consultant SEO avec 8 ans d'expérience en référencement naturel — chez l'annonceur, en agence, et maintenant en freelance.</p>
+    <p>J'aide les entreprises à <strong>augmenter leur trafic organique</strong> et à <strong>générer plus de leads</strong> grâce à des stratégies SEO data-driven et orientées résultats.</p>
+    <p>Ce guide vous a été utile ? Imaginez ce qu'un <strong>audit SEO complet</strong> de votre site pourrait révéler.</p>
+  </div>
+
+  <div class="cta-button">Demander un audit SEO gratuit →</div>
+  <div class="cta-url">saveyourweb.fr/contact</div>
+
+  <div class="about-footer">
+    © 2026 Save Your Web · Tous droits réservés · saveyourweb.fr
+  </div>
+</div>
+
+</body>
+</html>
