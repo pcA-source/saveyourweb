@@ -1,0 +1,181 @@
+---
+---
+
+<!-- Lead Magnet Popup — apparaît à la 2ème page vue -->
+<div id="lead-popup" class="fixed inset-0 z-[9998] hidden">
+  <!-- Overlay -->
+  <div id="lead-popup-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  
+  <!-- Modal -->
+  <div class="absolute inset-0 flex items-center justify-center p-4">
+    <div class="relative bg-[#0f0f0f] border border-white/10 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-popup-in">
+      
+      <!-- Close button -->
+      <button id="lead-popup-close" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer z-10">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Orange accent top bar -->
+      <div class="h-1 bg-gradient-to-r from-accent-warm via-orange-400 to-accent-warm"></div>
+
+      <div class="p-8 md:p-10">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-accent-warm/10 border border-accent-warm/20 rounded-full px-4 py-1.5 mb-6">
+          <span class="text-accent-warm text-xs font-semibold tracking-wide uppercase">Guide gratuit — 25 pages</span>
+        </div>
+
+        <!-- Title -->
+        <h3 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-3">
+          10 erreurs SEO qui tuent<br/>
+          <span class="text-accent-warm">votre trafic</span>
+        </h3>
+
+        <!-- Subtitle -->
+        <p class="text-white/60 text-sm leading-relaxed mb-6">
+          9 ans d'expérience SEO condensés en un guide actionnable. Découvrez les erreurs que je retrouve sur 80% des sites que j'audite — et comment les corriger.
+        </p>
+
+        <!-- Benefits -->
+        <div class="flex flex-col gap-2.5 mb-8">
+          <div class="flex items-center gap-3">
+            <span class="w-5 h-5 rounded-full bg-accent-warm/20 flex items-center justify-center flex-shrink-0">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 3L9 1" stroke="#FF6A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="text-white/80 text-sm">Chaque erreur expliquée avec des stats réelles</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-5 h-5 rounded-full bg-accent-warm/20 flex items-center justify-center flex-shrink-0">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 3L9 1" stroke="#FF6A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="text-white/80 text-sm">Corrections concrètes à appliquer immédiatement</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-5 h-5 rounded-full bg-accent-warm/20 flex items-center justify-center flex-shrink-0">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 3L9 1" stroke="#FF6A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="text-white/80 text-sm">Outils gratuits recommandés pour chaque point</span>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form id="lead-popup-form" class="flex flex-col gap-3">
+          <div class="flex gap-3">
+            <input type="text" name="prenom" placeholder="Votre prénom" required
+              class="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-accent-warm/50 transition-colors" />
+            <input type="email" name="email" placeholder="Votre email" required
+              class="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-accent-warm/50 transition-colors" />
+          </div>
+          <button type="submit" 
+            class="w-full bg-accent-warm hover:bg-accent-warm/90 text-black font-semibold py-3.5 rounded-lg transition-colors cursor-pointer text-sm">
+            Télécharger le guide gratuit →
+          </button>
+        </form>
+
+        <!-- Success message (hidden by default) -->
+        <div id="lead-popup-success" class="hidden text-center py-4">
+          <div class="text-3xl mb-3">🎉</div>
+          <p class="text-white font-semibold text-lg mb-2">C'est parti !</p>
+          <a href="/ressources/10-erreurs-seo-save-your-web.pdf" target="_blank" 
+            class="inline-flex items-center gap-2 bg-accent-warm text-black font-semibold px-6 py-3 rounded-lg hover:bg-accent-warm/90 transition-colors text-sm">
+            📥 Télécharger le PDF
+          </a>
+        </div>
+
+        <p class="text-white/30 text-xs text-center mt-4">Pas de spam. Jamais. Promis.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes popup-in {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .animate-popup-in {
+    animation: popup-in 0.3s ease-out;
+  }
+</style>
+
+<script>
+  (function() {
+    var STORAGE_KEY = 'syw_lead_popup';
+    var PAGE_VIEW_KEY = 'syw_page_views';
+
+    // Don't show if already submitted or dismissed
+    var popupState = localStorage.getItem(STORAGE_KEY);
+    if (popupState === 'submitted' || popupState === 'dismissed') return;
+
+    // Don't show on the lead magnet page itself or devis pages
+    var path = window.location.pathname;
+    if (path.indexOf('/ressources/') !== -1 || path.indexOf('/devis/') !== -1) return;
+
+    // Track page views
+    var views = parseInt(localStorage.getItem(PAGE_VIEW_KEY) || '0', 10) + 1;
+    localStorage.setItem(PAGE_VIEW_KEY, String(views));
+
+    // Show on 2nd page view
+    if (views < 2) return;
+
+    // Small delay for better UX
+    setTimeout(function() {
+      var popup = document.getElementById('lead-popup');
+      if (!popup) return;
+      popup.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }, 1500);
+
+    function closePopup(state) {
+      var popup = document.getElementById('lead-popup');
+      if (popup) {
+        popup.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+      if (state) localStorage.setItem(STORAGE_KEY, state);
+    }
+
+    // Close handlers
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.id === 'lead-popup-close') closePopup('dismissed');
+      if (e.target && e.target.id === 'lead-popup-overlay') closePopup('dismissed');
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePopup('dismissed');
+    });
+
+    // Form submission
+    document.addEventListener('submit', function(e) {
+      if (!e.target || e.target.id !== 'lead-popup-form') return;
+      e.preventDefault();
+
+      var form = e.target;
+      var btn = form.querySelector('button[type="submit"]');
+      var prenom = form.querySelector('[name="prenom"]').value.trim();
+      var email = form.querySelector('[name="email"]').value.trim();
+
+      if (!prenom || !email) return;
+
+      btn.textContent = 'Envoi...';
+      btn.disabled = true;
+
+      var data = new FormData();
+      data.append('type', 'lead_magnet');
+      data.append('prenom', prenom);
+      data.append('email', email);
+      data.append('source', 'popup');
+
+      fetch('https://saveyourweb-contact.pc-relange.workers.dev', {
+        method: 'POST',
+        body: data
+      }).then(function() {
+        form.classList.add('hidden');
+        document.getElementById('lead-popup-success').classList.remove('hidden');
+        localStorage.setItem(STORAGE_KEY, 'submitted');
+      }).catch(function() {
+        // Fallback: redirect to the page
+        window.location.href = '/ressources/10-erreurs-seo/';
+      });
+    });
+  })();
+</script>
