@@ -92,6 +92,8 @@ if (pathSegments.length > 0) {
     
     <!-- Fonts (self-hosted for performance) -->
     <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/SpaceGrotesk-Latin.woff2" as="font" type="font/woff2" crossorigin />
     
     <!-- Calendly widget -->
@@ -166,6 +168,43 @@ if (pathSegments.length > 0) {
 
     <CookieBanner />
     <LeadPopup />
+
+    <!-- GA4 conversion events -->
+    <script is:inline>
+      function sywEvent(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      // Track contact form submissions
+      document.addEventListener('submit', function(e) {
+        var form = e.target;
+        if (!form || !form.tagName) return;
+        var action = form.getAttribute('action') || '';
+        var id = form.id || '';
+        if (id === 'lead-popup-form' || action.indexOf('lead_magnet') !== -1) {
+          sywEvent('generate_lead', { event_category: 'lead_magnet', event_label: 'popup' });
+        } else if (form.closest && form.closest('[data-form="contact"]')) {
+          sywEvent('generate_lead', { event_category: 'contact', event_label: 'form' });
+        }
+      });
+      // Track Calendly clicks
+      document.addEventListener('click', function(e) {
+        var el = e.target;
+        if (!el) return;
+        var btn = el.closest ? el.closest('[onclick*="Calendly"], [data-calendly]') : null;
+        if (btn || (el.onclick && String(el.onclick).indexOf('Calendly') !== -1)) {
+          sywEvent('begin_checkout', { event_category: 'calendly', event_label: 'rdv_booking' });
+        }
+      });
+      // Track PDF downloads
+      document.addEventListener('click', function(e) {
+        var el = e.target;
+        if (!el) return;
+        var link = el.closest ? el.closest('a[href*=".pdf"]') : null;
+        if (link) {
+          sywEvent('file_download', { event_category: 'lead_magnet', file_name: link.href });
+        }
+      });
+    </script>
 
     <!-- Global scroll reveal & counter animations -->
     <script is:inline>

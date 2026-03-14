@@ -8,7 +8,14 @@ export default defineConfig({
   site: 'https://saveyourweb.fr',
   output: 'static',
   integrations: [sitemap({
-    filter: (page) => !page.includes('/devis/'),
+    filter: (page) => 
+      !page.includes('/devis/') && 
+      !page.includes('/mentions-legales') && 
+      !page.includes('/politique-de-confidentialite'),
+    serialize(item) {
+      item.lastmod = new Date().toISOString().split('T')[0];
+      return item;
+    },
   }), react()],
   vite: {
     plugins: [tailwindcss()],

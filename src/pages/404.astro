@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Page introuvable — Save Your Web" description="La page que vous cherchez n'existe pas ou a été déplacée.">
+  <Navbar />
+  
+  <main class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center max-w-lg">
+      <p class="text-8xl font-bold text-accent-warm mb-4">404</p>
+      <h1 class="text-3xl font-bold text-white mb-4">Page introuvable</h1>
+      <p class="text-white/60 mb-8 leading-relaxed">
+        La page que vous cherchez n'existe pas, a été déplacée, ou vous avez peut-être fait une faute de frappe dans l'URL.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="px-6 py-3 bg-accent-warm text-black font-semibold rounded-lg hover:bg-accent-warm/90 transition-colors">
+          Retour à l'accueil
+        </a>
+        <a href="/contact/" class="px-6 py-3 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/5 transition-colors">
+          Nous contacter
+        </a>
+      </div>
+      <div class="mt-12 text-white/30 text-sm">
+        <p>Pages populaires :</p>
+        <div class="flex flex-wrap justify-center gap-4 mt-3">
+          <a href="/services/seo/" class="text-white/50 hover:text-accent-warm transition-colors">SEO</a>
+          <a href="/services/sea/" class="text-white/50 hover:text-accent-warm transition-colors">Google Ads</a>
+          <a href="/etudes-de-cas/" class="text-white/50 hover:text-accent-warm transition-colors">Études de cas</a>
+          <a href="/blog/" class="text-white/50 hover:text-accent-warm transition-colors">Blog</a>
+          <a href="/tarifs/" class="text-white/50 hover:text-accent-warm transition-colors">Tarifs</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
